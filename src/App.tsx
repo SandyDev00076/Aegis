@@ -1,7 +1,14 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const App = () => {
-  return <h1>App will arrive here</h1>;
+  return (
+    <Router>
+      <Routes>
+        <Route path="/">Helllo</Route>
+      </Routes>
+    </Router>
+  );
 };
 
 export default App;
