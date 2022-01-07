@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { DarkModeIcon, MoreIcon, SearchIcon } from "../../assets/icons";
-import { Colors } from "../../styles/colors";
+import { Actions, IconButton } from "../../styles/shared";
 
 const Container = styled.header`
   display: flex;
-  padding: 16px;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 32px;
 `;
 
 const AppName = styled.h1`
@@ -15,23 +15,9 @@ const AppName = styled.h1`
   letter-spacing: 1px;
 `;
 
-const Actions = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-`;
-
-const IconButton = styled.button`
-  border: none;
-  padding: none;
-  background: transparent;
+const Action = styled(IconButton)`
   & > svg {
-    fill: ${Colors.primary};
     height: 28px;
-    width: auto;
-    &:hover {
-      fill: ${Colors.primaryHover};
-    }
   }
 `;
 
@@ -40,15 +26,15 @@ const Header = () => {
     <Container>
       <AppName>aegis</AppName>
       <Actions>
-        <IconButton>
+        <Action>
           <SearchIcon />
-        </IconButton>
-        <IconButton>
+        </Action>
+        <Action>
           <DarkModeIcon />
-        </IconButton>
-        <IconButton>
+        </Action>
+        <Action>
           <MoreIcon />
-        </IconButton>
+        </Action>
       </Actions>
     </Container>
   );
