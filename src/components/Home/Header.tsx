@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { DarkModeIcon, MoreIcon, SearchIcon } from "../assets/icons";
+import { DarkModeIcon, MoreIcon, SearchIcon } from "../../assets/icons";
+import { Colors } from "../../styles/colors";
 
 const Container = styled.header`
   display: flex;
@@ -25,8 +26,12 @@ const IconButton = styled.button`
   padding: none;
   background: transparent;
   & > svg {
-    height: 32px;
+    fill: ${Colors.primary};
+    height: 28px;
     width: auto;
+    &:hover {
+      fill: ${Colors.primaryHover};
+    }
   }
 `;
 
