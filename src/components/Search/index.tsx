@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useState } from "react";
+import { useSearch } from "../../hooks/useSearch";
 import { Colors } from "../../styles/colors";
-import { PageContainer } from "../../styles/shared";
+import { CollectionCards, PageContainer } from "../../styles/shared";
+import CollectionCard from "../CollectionCard";
 import Header from "./Header";
 
 const SearchInput = styled.input`
@@ -18,10 +20,23 @@ const SearchInput = styled.input`
 `;
 
 const Search = () => {
+  const [query, setQuery] = useState("");
+  const filteredCollections = useSearch(query);
+
   return (
     <PageContainer>
       <Header />
-      <SearchInput placeholder="Type here" />
+      <SearchInput
+        placeholder="type here"
+        name="search"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+      <CollectionCards>
+        {filteredCollections.map((collection) => (
+          <CollectionCard collection={collection} key={collection.id} />
+        ))}
+      </CollectionCards>
     </PageContainer>
   );
 };

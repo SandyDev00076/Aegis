@@ -2,15 +2,10 @@ import React from "react";
 import styled from "@emotion/styled";
 import Header from "./Header";
 import { useCollections } from "../../hooks/useCollections";
-import CollectionCard from "./CollectionCard";
-import { PageContainer } from "../../styles/shared";
-
-const Cards = styled.section`
-  display: grid;
-  gap: 32px;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  margin-bottom: 32px;
-`;
+import CollectionCard from "../CollectionCard";
+import { CollectionCards, PageContainer } from "../../styles/shared";
+import { AddIcon } from "../../assets/icons";
+import { AddButton } from "./AddButton";
 
 const SectionTitle = styled.h5`
   font-size: 0.8rem;
@@ -30,17 +25,20 @@ const Home = () => {
     <PageContainer>
       <Header />
       <SectionTitle>Favorites ({favorites.length})</SectionTitle>
-      <Cards>
+      <CollectionCards>
         {favorites.map((collection) => (
           <CollectionCard collection={collection} key={collection.id} />
         ))}
-      </Cards>
+      </CollectionCards>
       <SectionTitle>Collections ({otherCollections.length})</SectionTitle>
-      <Cards>
+      <CollectionCards>
         {otherCollections.map((collection) => (
           <CollectionCard collection={collection} key={collection.id} />
         ))}
-      </Cards>
+      </CollectionCards>
+      <AddButton>
+        <AddIcon />
+      </AddButton>
     </PageContainer>
   );
 };

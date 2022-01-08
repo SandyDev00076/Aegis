@@ -5,6 +5,7 @@ import { ReactComponent as EditIcon } from './edit_black_24dp.svg';
 import { ReactComponent as StarIcon } from './star_black_24dp.svg';
 import { ReactComponent as StarOutlineIcon } from './star_outline_black_24dp.svg';
 import { ReactComponent as CloseIcon } from './close_black_24dp.svg';
+import { ReactComponent as AddIcon } from './add_black_24dp.svg';
 
 export {
     DarkModeIcon,
@@ -13,5 +14,6 @@ export {
     EditIcon,
     StarIcon,
     StarOutlineIcon,
-    CloseIcon
+    CloseIcon,
+    AddIcon
 }
