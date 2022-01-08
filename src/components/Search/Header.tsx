@@ -1,14 +1,12 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { DarkModeIcon, MoreIcon, SearchIcon } from "../../assets/icons";
+import { CloseIcon } from "../../assets/icons";
 import {
   Actions,
   IconButton,
   PageHeaderContainer,
   PageTitle,
 } from "../../styles/shared";
-
-const AppName = styled(PageTitle)``;
 
 const Action = styled(IconButton)`
   & > svg {
@@ -19,16 +17,10 @@ const Action = styled(IconButton)`
 const Header = () => {
   return (
     <PageHeaderContainer>
-      <AppName>aegis</AppName>
+      <PageTitle>search</PageTitle>
       <Actions>
         <Action>
-          <SearchIcon />
-        </Action>
-        <Action>
-          <DarkModeIcon />
-        </Action>
-        <Action>
-          <MoreIcon />
+          <CloseIcon />
         </Action>
       </Actions>
     </PageHeaderContainer>

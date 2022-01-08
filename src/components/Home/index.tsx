@@ -3,11 +3,7 @@ import styled from "@emotion/styled";
 import Header from "./Header";
 import { useCollections } from "../../hooks/useCollections";
 import CollectionCard from "./CollectionCard";
-
-const Container = styled.section`
-  min-height: 100vh;
-  padding: 16px;
-`;
+import { PageContainer } from "../../styles/shared";
 
 const Cards = styled.section`
   display: grid;
@@ -31,7 +27,7 @@ const Home = () => {
   );
 
   return (
-    <Container>
+    <PageContainer>
       <Header />
       <SectionTitle>Favorites ({favorites.length})</SectionTitle>
       <Cards>
@@ -45,7 +41,7 @@ const Home = () => {
           <CollectionCard collection={collection} key={collection.id} />
         ))}
       </Cards>
-    </Container>
+    </PageContainer>
   );
 };
 

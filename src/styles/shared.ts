@@ -19,3 +19,21 @@ export const Actions = styled.div`
   align-items: center;
   gap: 8px;
 `;
+
+export const PageContainer = styled.section`
+  min-height: 100vh;
+  padding: 32px;
+`;
+
+export const PageHeaderContainer = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+`;
+
+export const PageTitle = styled.h1`
+  font-size: 2rem;
+  letter-spacing: 1px;
+  color: ${Colors.primaryLighter};
+`;
