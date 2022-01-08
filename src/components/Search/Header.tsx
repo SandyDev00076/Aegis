@@ -7,6 +7,7 @@ import {
   PageHeaderContainer,
   PageTitle,
 } from "../../styles/shared";
+import { useNavigate } from "react-router-dom";
 
 const Action = styled(IconButton)`
   & > svg {
@@ -15,11 +16,19 @@ const Action = styled(IconButton)`
 `;
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <PageHeaderContainer>
       <PageTitle>search</PageTitle>
       <Actions>
-        <Action>
+        <Action
+          onClick={() =>
+            navigate("/", {
+              replace: true,
+            })
+          }
+        >
           <CloseIcon />
         </Action>
       </Actions>

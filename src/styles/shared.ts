@@ -1,23 +1,37 @@
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 import { Colors } from "./colors";
 
 export const IconButton = styled.button`
     border: none;
-    padding: none;
+    padding: 0;
     background: transparent;
     & > svg {
+      fill: ${Colors.primary};
+      width: auto;
+      &:hover {
+          fill: ${Colors.primaryHover};
+      }
+    }
+`;
+
+export const IconLink = styled(Link)`
+  border: none;
+  padding: 0;
+  background: transparent;
+  & > svg {
     fill: ${Colors.primary};
     width: auto;
     &:hover {
         fill: ${Colors.primaryHover};
     }
-    }
-`;
+  }
+`
 
 export const Actions = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
 `;
 
 export const PageContainer = styled.section`

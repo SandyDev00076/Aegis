@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
 import React, { useState } from "react";
+import styled from "@emotion/styled";
 import { useSearch } from "../../hooks/useSearch";
 import { Colors } from "../../styles/colors";
 import { CollectionCards, PageContainer } from "../../styles/shared";
@@ -33,8 +33,12 @@ const Search = () => {
         onChange={(e) => setQuery(e.target.value)}
       />
       <CollectionCards>
-        {filteredCollections.map((collection) => (
-          <CollectionCard collection={collection} key={collection.id} />
+        {filteredCollections.map((collection, index) => (
+          <CollectionCard
+            collection={collection}
+            index={index}
+            key={collection.id}
+          />
         ))}
       </CollectionCards>
     </PageContainer>

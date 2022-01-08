@@ -4,6 +4,7 @@ import { DarkModeIcon, MoreIcon, SearchIcon } from "../../assets/icons";
 import {
   Actions,
   IconButton,
+  IconLink,
   PageHeaderContainer,
   PageTitle,
 } from "../../styles/shared";
@@ -16,14 +17,20 @@ const Action = styled(IconButton)`
   }
 `;
 
+const ActionLink = styled(IconLink)`
+  & > svg {
+    height: 28px;
+  }
+`;
+
 const Header = () => {
   return (
     <PageHeaderContainer>
       <AppName>aegis</AppName>
       <Actions>
-        <Action>
+        <ActionLink to="/search">
           <SearchIcon />
-        </Action>
+        </ActionLink>
         <Action>
           <DarkModeIcon />
         </Action>

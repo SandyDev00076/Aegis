@@ -26,14 +26,22 @@ const Home = () => {
       <Header />
       <SectionTitle>Favorites ({favorites.length})</SectionTitle>
       <CollectionCards>
-        {favorites.map((collection) => (
-          <CollectionCard collection={collection} key={collection.id} />
+        {favorites.map((collection, index) => (
+          <CollectionCard
+            collection={collection}
+            index={index}
+            key={collection.id}
+          />
         ))}
       </CollectionCards>
       <SectionTitle>Collections ({otherCollections.length})</SectionTitle>
       <CollectionCards>
-        {otherCollections.map((collection) => (
-          <CollectionCard collection={collection} key={collection.id} />
+        {otherCollections.map((collection, index) => (
+          <CollectionCard
+            collection={collection}
+            index={index}
+            key={collection.id}
+          />
         ))}
       </CollectionCards>
       <AddButton>

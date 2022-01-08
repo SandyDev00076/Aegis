@@ -36,5 +36,26 @@ export const dummyCollections: ICollection[] = [
         createdAt: '2022-01-07T13:16:09.700Z',
         updatedAt: '2022-01-07T13:16:09.700Z',
         favorite: false
+    },
+    {
+        id: '3',
+        name: 'My Antivirus',
+        fields: [
+            {
+                id: '1',
+                name: 'ID',
+                value: 'sandyAntiVirus',
+                hidden: false
+            },
+            {
+                id: '2',
+                name: 'Password',
+                value: 'kjkjlkj',
+                hidden: true
+            }
+        ],
+        createdAt: '2022-01-06T21:16:09.700Z',
+        updatedAt: '2022-01-07T13:19:09.700Z',
+        favorite: false
     }
 ]

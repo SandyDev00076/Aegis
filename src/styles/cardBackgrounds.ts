@@ -13,3 +13,5 @@ export const Gradient2 = styled.div`
 export const Gradient3 = styled.div`
     background: linear-gradient(${GRADIENT_ANGLE}, #EAECC6, #2BC0E4);
 `
+
+export const Gradients = [Gradient1, Gradient2, Gradient3];
