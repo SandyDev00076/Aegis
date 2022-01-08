@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Gradients } from "../styles/cardBackgrounds";
+import { Gradient1, Gradients } from "../styles/cardBackgrounds";
 import { ICollection } from "../types/Collection";
 import { Actions, IconButton } from "../styles/shared";
 import { EditIcon, StarIcon, StarOutlineIcon } from "../assets/icons";
@@ -10,6 +10,11 @@ interface ICollectionCardProps {
   collection: ICollection;
   index: number;
 }
+
+const Container = styled(Gradient1)`
+  padding: 16px;
+  border-radius: 10px;
+`;
 
 const Header = styled.div`
   display: flex;
@@ -56,11 +61,6 @@ const FieldValue = styled.div`
 `;
 
 const CollectionCard = ({ collection, index }: ICollectionCardProps) => {
-  const Container = styled(Gradients[index % Gradients.length])`
-    padding: 16px;
-    border-radius: 10px;
-  `;
-
   return (
     <Container>
       <Header>
