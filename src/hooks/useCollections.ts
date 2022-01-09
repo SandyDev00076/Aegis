@@ -9,7 +9,7 @@ interface IState {
 }
 
 export const useCollections = create<IState>(set => ({
-    collections: dummyCollections,
+    collections: [],
     deleteCollection: (index: string) => set(state => {
         const collections = [...state.collections];
         const itemToDelete = collections.findIndex(collection => collection.id === index);

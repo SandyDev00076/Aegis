@@ -6,6 +6,7 @@ import CollectionCard from "../CollectionCard";
 import { CollectionCards, PageContainer } from "../../styles/shared";
 import { AddIcon } from "../../assets/icons";
 import { AddButton } from "./AddButton";
+import NoCollections from "./NoCollections";
 
 const SectionTitle = styled.h5`
   font-size: 0.8rem;
@@ -14,12 +15,29 @@ const SectionTitle = styled.h5`
   margin-bottom: 16px;
 `;
 
+const RestOfTheScreen = styled.div`
+  height: calc(100vh - 136px);
+  display: grid;
+  place-items: center;
+`;
+
 const Home = () => {
   const collections = useCollections((state) => state.collections);
   const favorites = collections.filter((collection) => collection.favorite);
   const otherCollections = collections.filter(
     (collection) => !collection.favorite
   );
+
+  if (collections.length === 0) {
+    return (
+      <PageContainer>
+        <Header />
+        <RestOfTheScreen>
+          <NoCollections />
+        </RestOfTheScreen>
+      </PageContainer>
+    );
+  }
 
   return (
     <PageContainer>
