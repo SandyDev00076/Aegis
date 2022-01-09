@@ -30,29 +30,6 @@ const Search = () => {
   const [query, setQuery] = useState("");
   const filteredCollections = useSearch(query);
 
-  if (filteredCollections.length === 0 && query) {
-    return (
-      <PageContainer>
-        <Header />
-        <SearchInput
-          placeholder="type here"
-          name="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <RestOfTheScreen>
-          <NoCollections
-            line2={
-              <>
-                Nothing matched with <strong>{query}</strong>
-              </>
-            }
-          />
-        </RestOfTheScreen>
-      </PageContainer>
-    );
-  }
-
   return (
     <PageContainer>
       <Header />
@@ -62,15 +39,27 @@ const Search = () => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <CollectionCards>
-        {filteredCollections.map((collection, index) => (
-          <CollectionCard
-            collection={collection}
-            index={index}
-            key={collection.id}
+      {filteredCollections.length === 0 && query ? (
+        <RestOfTheScreen>
+          <NoCollections
+            line2={
+              <>
+                Nothing matched with <strong>{query}</strong>
+              </>
+            }
           />
-        ))}
-      </CollectionCards>
+        </RestOfTheScreen>
+      ) : (
+        <CollectionCards>
+          {filteredCollections.map((collection, index) => (
+            <CollectionCard
+              collection={collection}
+              index={index}
+              key={collection.id}
+            />
+          ))}
+        </CollectionCards>
+      )}
     </PageContainer>
   );
 };

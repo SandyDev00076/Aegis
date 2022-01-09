@@ -27,11 +27,12 @@ const Home = () => {
   const otherCollections = collections.filter(
     (collection) => !collection.favorite
   );
+  const noCollections = collections.length === 0;
 
-  if (collections.length === 0) {
-    return (
-      <PageContainer>
-        <Header noSearch />
+  return (
+    <PageContainer>
+      <Header noSearch={noCollections} />
+      {noCollections ? (
         <RestOfTheScreen>
           <NoCollections
             line2={
@@ -41,36 +42,30 @@ const Home = () => {
             }
           />
         </RestOfTheScreen>
-        <AddButton>
-          <AddIcon />
-        </AddButton>
-      </PageContainer>
-    );
-  }
-
-  return (
-    <PageContainer>
-      <Header />
-      <SectionTitle>Favorites ({favorites.length})</SectionTitle>
-      <CollectionCards>
-        {favorites.map((collection, index) => (
-          <CollectionCard
-            collection={collection}
-            index={index}
-            key={collection.id}
-          />
-        ))}
-      </CollectionCards>
-      <SectionTitle>Collections ({otherCollections.length})</SectionTitle>
-      <CollectionCards>
-        {otherCollections.map((collection, index) => (
-          <CollectionCard
-            collection={collection}
-            index={index}
-            key={collection.id}
-          />
-        ))}
-      </CollectionCards>
+      ) : (
+        <>
+          <SectionTitle>Favorites ({favorites.length})</SectionTitle>
+          <CollectionCards>
+            {favorites.map((collection, index) => (
+              <CollectionCard
+                collection={collection}
+                index={index}
+                key={collection.id}
+              />
+            ))}
+          </CollectionCards>
+          <SectionTitle>Collections ({otherCollections.length})</SectionTitle>
+          <CollectionCards>
+            {otherCollections.map((collection, index) => (
+              <CollectionCard
+                collection={collection}
+                index={index}
+                key={collection.id}
+              />
+            ))}
+          </CollectionCards>
+        </>
+      )}
       <AddButton>
         <AddIcon />
       </AddButton>
