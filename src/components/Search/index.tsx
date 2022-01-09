@@ -5,6 +5,7 @@ import { Colors } from "../../styles/colors";
 import { CollectionCards, PageContainer } from "../../styles/shared";
 import CollectionCard from "../CollectionCard";
 import Header from "./Header";
+import NoCollections from "../NoCollections";
 
 const SearchInput = styled.input`
   padding: 8px;
@@ -17,6 +18,12 @@ const SearchInput = styled.input`
   &:focus {
     border-bottom-color: ${Colors.primary};
   }
+`;
+
+const RestOfTheScreen = styled.div`
+  height: calc(100vh - 210px);
+  display: grid;
+  place-items: center;
 `;
 
 const Search = () => {
@@ -32,15 +39,27 @@ const Search = () => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <CollectionCards>
-        {filteredCollections.map((collection, index) => (
-          <CollectionCard
-            collection={collection}
-            index={index}
-            key={collection.id}
+      {filteredCollections.length === 0 && query ? (
+        <RestOfTheScreen>
+          <NoCollections
+            line2={
+              <>
+                Nothing matched with <strong>{query}</strong>
+              </>
+            }
           />
-        ))}
-      </CollectionCards>
+        </RestOfTheScreen>
+      ) : (
+        <CollectionCards>
+          {filteredCollections.map((collection, index) => (
+            <CollectionCard
+              collection={collection}
+              index={index}
+              key={collection.id}
+            />
+          ))}
+        </CollectionCards>
+      )}
     </PageContainer>
   );
 };
