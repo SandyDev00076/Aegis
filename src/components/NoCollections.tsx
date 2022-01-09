@@ -1,7 +1,11 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { WarningIcon } from "../../assets/icons";
-import { Colors } from "../../styles/colors";
+import { WarningIcon } from "../assets/icons";
+import { Colors } from "../styles/colors";
+
+interface INoCollectionsProps {
+  line2: JSX.Element;
+}
 
 const Container = styled.section`
   display: flex;
@@ -29,14 +33,12 @@ const Line2 = styled.h2`
   color: ${Colors.textSecondary};
 `;
 
-const NoCollections = () => {
+const NoCollections = ({ line2 }: INoCollectionsProps) => {
   return (
     <Container>
       <Icon />
       <Line1>0 collections found</Line1>
-      <Line2>
-        <strong>Add</strong> a new collection to get started
-      </Line2>
+      <Line2>{line2}</Line2>
     </Container>
   );
 };

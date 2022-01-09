@@ -5,6 +5,7 @@ import { Colors } from "../../styles/colors";
 import { CollectionCards, PageContainer } from "../../styles/shared";
 import CollectionCard from "../CollectionCard";
 import Header from "./Header";
+import NoCollections from "../NoCollections";
 
 const SearchInput = styled.input`
   padding: 8px;
@@ -19,9 +20,38 @@ const SearchInput = styled.input`
   }
 `;
 
+const RestOfTheScreen = styled.div`
+  height: calc(100vh - 210px);
+  display: grid;
+  place-items: center;
+`;
+
 const Search = () => {
   const [query, setQuery] = useState("");
   const filteredCollections = useSearch(query);
+
+  if (filteredCollections.length === 0 && query) {
+    return (
+      <PageContainer>
+        <Header />
+        <SearchInput
+          placeholder="type here"
+          name="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <RestOfTheScreen>
+          <NoCollections
+            line2={
+              <>
+                Nothing matched with <strong>{query}</strong>
+              </>
+            }
+          />
+        </RestOfTheScreen>
+      </PageContainer>
+    );
+  }
 
   return (
     <PageContainer>

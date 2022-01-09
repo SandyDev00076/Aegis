@@ -6,7 +6,7 @@ import CollectionCard from "../CollectionCard";
 import { CollectionCards, PageContainer } from "../../styles/shared";
 import { AddIcon } from "../../assets/icons";
 import { AddButton } from "./AddButton";
-import NoCollections from "./NoCollections";
+import NoCollections from "../NoCollections";
 
 const SectionTitle = styled.h5`
   font-size: 0.8rem;
@@ -33,7 +33,13 @@ const Home = () => {
       <PageContainer>
         <Header noSearch />
         <RestOfTheScreen>
-          <NoCollections />
+          <NoCollections
+            line2={
+              <>
+                <strong>Add</strong> a new collection to get started
+              </>
+            }
+          />
         </RestOfTheScreen>
         <AddButton>
           <AddIcon />
