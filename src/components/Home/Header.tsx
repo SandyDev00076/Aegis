@@ -9,6 +9,10 @@ import {
   PageTitle,
 } from "../../styles/shared";
 
+interface IHeaderProps {
+  noSearch?: boolean;
+}
+
 const AppName = styled(PageTitle)``;
 
 const Action = styled(IconButton)`
@@ -23,14 +27,16 @@ const ActionLink = styled(IconLink)`
   }
 `;
 
-const Header = () => {
+const Header = ({ noSearch = false }: IHeaderProps) => {
   return (
     <PageHeaderContainer>
       <AppName>aegis</AppName>
       <Actions>
-        <ActionLink to="/search">
-          <SearchIcon />
-        </ActionLink>
+        {!noSearch && (
+          <ActionLink to="/search">
+            <SearchIcon />
+          </ActionLink>
+        )}
         <Action>
           <DarkModeIcon />
         </Action>

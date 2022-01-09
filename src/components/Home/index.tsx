@@ -31,10 +31,13 @@ const Home = () => {
   if (collections.length === 0) {
     return (
       <PageContainer>
-        <Header />
+        <Header noSearch />
         <RestOfTheScreen>
           <NoCollections />
         </RestOfTheScreen>
+        <AddButton>
+          <AddIcon />
+        </AddButton>
       </PageContainer>
     );
   }
