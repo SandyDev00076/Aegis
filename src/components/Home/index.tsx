@@ -66,7 +66,7 @@ const Home = () => {
           </CollectionCards>
         </>
       )}
-      <AddButton>
+      <AddButton to="/add">
         <AddIcon />
       </AddButton>
     </PageContainer>
