@@ -37,12 +37,11 @@
     }
   },
   "lint-staged": {
-    "*.+(js|jsx|ts|tsx)": "yarn lint:fix"
+    "*.+(js|jsx|ts|tsx)": "eslint --fix"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint:fix": "eslint --fix",
     "prepare": "husky install",
     "test": "react-scripts test"
   },
