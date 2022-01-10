@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Colors } from "../../styles/colors";
+import { Colors } from "styles/colors";
 
 export const AddButton = styled.button`
   position: fixed;

@@ -20,7 +20,7 @@ const Header = () => {
 
   return (
     <PageHeaderContainer>
-      <PageTitle>search</PageTitle>
+      <PageTitle>add</PageTitle>
       <Actions>
         <Action
           onClick={() =>

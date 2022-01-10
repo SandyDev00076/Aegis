@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import { useSearch } from "../../hooks/useSearch";
-import { Colors } from "../../styles/colors";
-import { CollectionCards, PageContainer } from "../../styles/shared";
-import CollectionCard from "../CollectionCard";
+import { useSearch } from "hooks/useSearch";
+import { Colors } from "styles/colors";
+import { CollectionCards, PageContainer } from "styles/shared";
+import CollectionCard from "components/CollectionCard";
 import Header from "./Header";
-import NoCollections from "../NoCollections";
+import NoCollections from "components/NoCollections";
 
 const SearchInput = styled.input`
   padding: 8px;
