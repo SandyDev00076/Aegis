@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { DarkModeIcon, MoreIcon, SearchIcon } from "../../assets/icons";
+import { DarkModeIcon, MoreIcon, SearchIcon } from "assets/icons";
 import {
   Actions,
   IconButton,
   IconLink,
   PageHeaderContainer,
   PageTitle,
-} from "../../styles/shared";
+} from "styles/shared";
 
 interface IHeaderProps {
   noSearch?: boolean;

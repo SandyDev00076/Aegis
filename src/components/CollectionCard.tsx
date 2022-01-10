@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Gradient1, Gradients } from "../styles/cardBackgrounds";
+import { Gradient1 } from "../styles/cardBackgrounds";
 import { ICollection } from "../types/Collection";
 import { Actions, IconButton } from "../styles/shared";
 import { EditIcon, StarIcon, StarOutlineIcon } from "../assets/icons";
@@ -60,7 +60,7 @@ const FieldValue = styled.div`
   font-size: 1rem;
 `;
 
-const CollectionCard = ({ collection, index }: ICollectionCardProps) => {
+const CollectionCard = ({ collection }: ICollectionCardProps) => {
   return (
     <Container>
       <Header>

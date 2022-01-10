@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "@emotion/styled";
 import Header from "./Header";
-import { useCollections } from "../../hooks/useCollections";
-import CollectionCard from "../CollectionCard";
-import { CollectionCards, PageContainer } from "../../styles/shared";
-import { AddIcon } from "../../assets/icons";
+import { useCollections } from "hooks/useCollections";
+import CollectionCard from "components/CollectionCard";
+import { CollectionCards, PageContainer } from "styles/shared";
+import { AddIcon } from "assets/icons";
 import { AddButton } from "./AddButton";
-import NoCollections from "../NoCollections";
+import NoCollections from "components/NoCollections";
 
 const SectionTitle = styled.h5`
   font-size: 0.8rem;
@@ -66,7 +66,7 @@ const Home = () => {
           </CollectionCards>
         </>
       )}
-      <AddButton>
+      <AddButton to="/add">
         <AddIcon />
       </AddButton>
     </PageContainer>

@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
-import { Colors } from "../../styles/colors";
+import { Link } from "react-router-dom";
+import { Colors } from "styles/colors";
 
-export const AddButton = styled.button`
+export const AddButton = styled(Link)`
   position: fixed;
   bottom: 24px;
   right: 32px;
