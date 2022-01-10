@@ -1,0 +1,13 @@
+name: ESLint
+on: [push]
+jobs:
+  Run-Eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: install # will run `yarn install` command
+      - name: Run the eslint command
+        run: eslint --fix
