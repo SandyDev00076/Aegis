@@ -3,10 +3,10 @@ import styled from "@emotion/styled";
 import Header from "./Header";
 import { useCollections } from "hooks/useCollections";
 import CollectionCard from "components/CollectionCard";
-import { CollectionCards, PageContainer } from "styles/shared";
+import { ActionLink, CollectionCards, PageContainer } from "styles/shared";
 import { AddIcon } from "assets/icons";
-import { AddButton } from "./AddButton";
 import NoCollections from "components/NoCollections";
+import { Colors } from "styles/colors";
 
 const SectionTitle = styled.h5`
   font-size: 0.8rem;
@@ -19,6 +19,26 @@ const RestOfTheScreen = styled.div`
   height: calc(100vh - 136px);
   display: grid;
   place-items: center;
+`;
+
+const AddButton = styled(ActionLink)`
+  position: fixed;
+  bottom: 24px;
+  right: 32px;
+  color: ${Colors.textInvert};
+  background: linear-gradient(
+    150deg,
+    ${Colors.primary},
+    ${Colors.primaryLight}
+  );
+
+  &:hover {
+    background: linear-gradient(
+      230deg,
+      ${Colors.primary},
+      ${Colors.primaryLight}
+    );
+  }
 `;
 
 const Home = () => {

@@ -2,6 +2,40 @@ import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 import { Colors } from "./colors";
 
+export const ActionButton = styled.button`
+  height: 60px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: grid;
+  place-items: center;
+  border: none;
+  & > svg {
+    height: 32px;
+    width: auto;
+    fill: ${Colors.textInvert};
+  }
+`
+
+export const ActionLink = styled(Link)`
+  height: 60px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: grid;
+  place-items: center;
+  border: none;
+  & > svg {
+    height: 32px;
+    width: auto;
+    fill: ${Colors.textInvert};
+  }
+`
+
 export const IconButton = styled.button`
     border: none;
     padding: 0;
