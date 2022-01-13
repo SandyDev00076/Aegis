@@ -1,0 +1,4 @@
+[data-reach-dialog-overlay] {
+  display: grid;
+  place-items: center;
+}

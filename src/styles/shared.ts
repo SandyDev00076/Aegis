@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Dialog from "@reach/dialog";
 import { Link } from "react-router-dom";
 import { Colors } from "./colors";
 
@@ -87,9 +88,25 @@ export const PageTitle = styled.h1`
   color: ${Colors.primaryLighter};
 `;
 
+export const DialogHeader = styled.header`
+  margin-bottom: 32px;
+`
+
+export const DialogTitle = styled.h1`
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  color: ${Colors.primaryLighter};
+`;
+
 export const CollectionCards = styled.section`
   display: grid;
   gap: 32px;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   margin-bottom: 32px;
 `;
+
+export const CustomDialog = styled(Dialog)`
+  border-radius: 10px;
+  padding: 32px;
+  width: 80%;
+`

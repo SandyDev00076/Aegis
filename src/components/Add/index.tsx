@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { Colors } from "styles/colors";
 import { ActionButton, PageContainer } from "styles/shared";
 import { IField } from "types/Field";
+import AddFieldDialog from "./AddFieldDialog";
 import Header from "./Header";
 import NoFields from "./NoFields";
 
@@ -55,8 +56,10 @@ const Actions = styled.div`
 const Add = () => {
   const [name, setName] = useState("");
   const [fields, setFields] = useState<IField[]>([]);
+  const [addFieldDialog, showAddFieldDialog] = useState(false);
 
   function onFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     console.log("do something");
   }
 
@@ -75,14 +78,25 @@ const Add = () => {
           {fields.length === 0 && <NoFields />}
         </Entry>
         <Actions>
-          <AddFieldButton>
+          <AddFieldButton
+            type="button"
+            onClick={() => showAddFieldDialog(true)}
+          >
             <AddIcon />
           </AddFieldButton>
-          <SubmitActionButton disabled={!name || fields.length === 0}>
+          <SubmitActionButton
+            type="submit"
+            disabled={!name || fields.length === 0}
+          >
             <DoneIcon />
           </SubmitActionButton>
         </Actions>
       </form>
+      {/* Dialogs */}
+      <AddFieldDialog
+        isOpen={addFieldDialog}
+        handleClose={() => showAddFieldDialog(false)}
+      />
     </PageContainer>
   );
 };
