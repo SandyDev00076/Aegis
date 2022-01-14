@@ -5,14 +5,19 @@ interface IEntryProps {
   label: string;
   children: React.ReactNode;
   noInput?: boolean;
+  noBottomMargin?: boolean;
 }
 
-const Container = styled.label`
-  display: block;
-  margin-bottom: 16px;
-`;
-
-const Entry = ({ label, children, noInput = false }: IEntryProps) => {
+const Entry = ({
+  label,
+  children,
+  noInput = false,
+  noBottomMargin = false,
+}: IEntryProps) => {
+  const Container = styled.label`
+    display: block;
+    margin-bottom: ${noBottomMargin ? "0" : "16px"};
+  `;
   const FieldLabel = styled.div`
     text-transform: uppercase;
     font-weight: bold;

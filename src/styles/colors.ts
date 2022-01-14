@@ -20,5 +20,7 @@ export const Colors = {
     whiteTint: '#f3f3f3',
     
     success: '#268b4e',
-    successLight: '#35c06d'
+    successLight: '#35c06d',
+
+    fieldCardBorder: '#e0e0e0'
 }

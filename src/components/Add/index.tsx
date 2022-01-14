@@ -12,6 +12,7 @@ import {
 } from "styles/shared";
 import { IField } from "types/Field";
 import AddFieldDialog from "./AddFieldDialog";
+import FieldCard from "./FieldCard";
 import Header from "./Header";
 import NoFields from "./NoFields";
 
@@ -27,9 +28,21 @@ const Actions = styled.div`
   padding: 16px;
 `;
 
+const Fields = styled.div`
+  height: calc(100vh - 340px);
+  overflow-y: auto;
+`;
+
 const Add = () => {
   const [name, setName] = useState("");
-  const [fields, setFields] = useState<IField[]>([]);
+  const [fields, setFields] = useState<IField[]>([
+    {
+      id: "1",
+      hidden: false,
+      name: "hello",
+      value: "thisisvalue",
+    },
+  ]);
   const [addFieldDialog, showAddFieldDialog] = useState(false);
 
   const addCollection = useCollections((state) => state.addCollection);
@@ -59,7 +72,15 @@ const Add = () => {
           />
         </Entry>
         <Entry label="Fields" noInput>
-          {fields.length === 0 && <NoFields />}
+          {fields.length === 0 ? (
+            <NoFields />
+          ) : (
+            <Fields>
+              {fields.map((field) => (
+                <FieldCard field={field} key={field.id} />
+              ))}
+            </Fields>
+          )}
         </Entry>
         <Actions>
           <AddFieldButton
