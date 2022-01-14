@@ -6,6 +6,7 @@ interface IState {
     collections: ICollection[];
     setCollections: (k: ICollection[]) => void;
     deleteCollection: (index: string) => void;
+    addCollection: (k: ICollection) => void;
 }
 
 export const useCollections = create<IState>(set => ({
@@ -22,5 +23,8 @@ export const useCollections = create<IState>(set => ({
     }),
     setCollections: (newCollections: ICollection[]) => set(() => ({
         collections: newCollections
+    })),
+    addCollection: (newCollection: ICollection) => set(state => ({
+        collections: [newCollection, ...state.collections]
     }))
 }));

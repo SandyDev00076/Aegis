@@ -8,6 +8,8 @@ import { ReactComponent as CloseIcon } from './close_black_24dp.svg';
 import { ReactComponent as AddIcon } from './add_black_24dp.svg';
 import { ReactComponent as WarningIcon } from './warning_black_24dp.svg';
 import { ReactComponent as DoneIcon } from './done_black_24dp.svg';
+import { ReactComponent as SafeIcon } from './lock_black_24dp.svg';
+import { ReactComponent as UnSafeIcon } from './lock_open_black_24dp.svg';
 
 export {
     DarkModeIcon,
@@ -19,5 +21,7 @@ export {
     CloseIcon,
     AddIcon,
     WarningIcon,
-    DoneIcon
+    DoneIcon,
+    SafeIcon,
+    UnSafeIcon
 }

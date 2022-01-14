@@ -2,48 +2,22 @@ import styled from "@emotion/styled";
 import { AddIcon, DoneIcon } from "assets/icons";
 import Entry from "components/Entry";
 import Input from "components/Input";
+import { useCollections } from "hooks/useCollections";
+import { nanoid } from "nanoid";
 import React, { useState } from "react";
-import { Colors } from "styles/colors";
-import { ActionButton, PageContainer } from "styles/shared";
+import {
+  PageContainer,
+  SecondaryActionButton,
+  SuccessActionButton,
+} from "styles/shared";
 import { IField } from "types/Field";
 import AddFieldDialog from "./AddFieldDialog";
 import Header from "./Header";
 import NoFields from "./NoFields";
 
-const SubmitActionButton = styled(ActionButton)`
-  background: linear-gradient(
-    150deg,
-    ${Colors.success},
-    ${Colors.successLight}
-  );
+const SubmitActionButton = styled(SuccessActionButton)``;
 
-  &:hover {
-    background: linear-gradient(
-      230deg,
-      ${Colors.success},
-      ${Colors.successLight}
-    );
-  }
-`;
-
-const AddFieldButton = styled(ActionButton)`
-  & > svg {
-    fill: ${Colors.text};
-  }
-  background: linear-gradient(
-    150deg,
-    ${Colors.secondary},
-    ${Colors.secondaryLight}
-  );
-
-  &:hover {
-    background: linear-gradient(
-      230deg,
-      ${Colors.secondary},
-      ${Colors.secondaryLight}
-    );
-  }
-`;
+const AddFieldButton = styled(SecondaryActionButton)``;
 
 const Actions = styled.div`
   display: flex;
@@ -58,9 +32,19 @@ const Add = () => {
   const [fields, setFields] = useState<IField[]>([]);
   const [addFieldDialog, showAddFieldDialog] = useState(false);
 
+  const addCollection = useCollections((state) => state.addCollection);
+
   function onFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log("do something");
+    const curr = new Date().toISOString();
+    addCollection({
+      id: `collection-${nanoid(5)}`,
+      name,
+      fields,
+      favorite: false,
+      createdAt: curr,
+      updatedAt: curr,
+    });
   }
 
   return (
@@ -96,6 +80,7 @@ const Add = () => {
       <AddFieldDialog
         isOpen={addFieldDialog}
         handleClose={() => showAddFieldDialog(false)}
+        onFieldSubmit={(field) => setFields((prev) => [field, ...prev])}
       />
     </PageContainer>
   );

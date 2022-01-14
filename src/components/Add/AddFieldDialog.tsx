@@ -1,17 +1,52 @@
 import React, { useState } from "react";
 import Entry from "components/Entry";
 import Input from "components/Input";
-import { CustomDialog, DialogHeader, DialogTitle } from "styles/shared";
+import {
+  CustomDialog,
+  DialogActions,
+  DialogHeader,
+  DialogTitle,
+  SecondaryActionButton,
+  SuccessActionButton,
+} from "styles/shared";
+import styled from "@emotion/styled";
+import { DoneIcon, SafeIcon, UnSafeIcon } from "assets/icons";
+import { IField } from "types/Field";
+import { nanoid } from "nanoid";
 
 interface IAddFieldDialogProps {
   isOpen: boolean;
   handleClose: () => void;
+  onFieldSubmit: (k: IField) => void;
 }
 
-const AddFieldDialog = ({ isOpen, handleClose }: IAddFieldDialogProps) => {
+const SubmitButton = styled(SuccessActionButton)`
+  height: 52px;
+`;
+
+const HideButton = styled(SecondaryActionButton)`
+  height: 52px;
+`;
+
+const AddFieldDialog = ({
+  isOpen,
+  handleClose,
+  onFieldSubmit,
+}: IAddFieldDialogProps) => {
   const [name, setName] = useState("");
   const [value, setValue] = useState("");
   const [hidden, setHidden] = useState(false);
+
+  function onFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    onFieldSubmit({
+      id: `field-${nanoid(5)}`,
+      name,
+      value,
+      hidden,
+    });
+    handleClose();
+  }
 
   return (
     <CustomDialog
@@ -22,7 +57,7 @@ const AddFieldDialog = ({ isOpen, handleClose }: IAddFieldDialogProps) => {
       <DialogHeader>
         <DialogTitle>add field</DialogTitle>
       </DialogHeader>
-      <form>
+      <form onSubmit={onFormSubmit}>
         <Entry label="Name">
           <Input
             name="name"
@@ -37,6 +72,14 @@ const AddFieldDialog = ({ isOpen, handleClose }: IAddFieldDialogProps) => {
             onChange={(e) => setValue(e.target.value)}
           />
         </Entry>
+        <DialogActions>
+          <HideButton type="button" onClick={() => setHidden((prev) => !prev)}>
+            {hidden ? <SafeIcon /> : <UnSafeIcon />}
+          </HideButton>
+          <SubmitButton type="submit" disabled={!name || !value}>
+            <DoneIcon />
+          </SubmitButton>
+        </DialogActions>
       </form>
     </CustomDialog>
   );

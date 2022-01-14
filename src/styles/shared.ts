@@ -20,6 +20,41 @@ export const ActionButton = styled.button`
   }
 `
 
+export const SuccessActionButton = styled(ActionButton)`
+background: linear-gradient(
+  150deg,
+  ${Colors.success},
+  ${Colors.successLight}
+);
+
+&:hover {
+  background: linear-gradient(
+    230deg,
+    ${Colors.success},
+    ${Colors.successLight}
+  );
+}
+`;
+
+export const SecondaryActionButton = styled(ActionButton)`
+& > svg {
+  fill: ${Colors.text};
+}
+background: linear-gradient(
+  150deg,
+  ${Colors.secondary},
+  ${Colors.secondaryLight}
+);
+
+&:hover {
+  background: linear-gradient(
+    230deg,
+    ${Colors.secondary},
+    ${Colors.secondaryLight}
+  );
+}
+`;
+
 export const ActionLink = styled(Link)`
   height: 60px;
   aspect-ratio: 1;
@@ -109,4 +144,12 @@ export const CustomDialog = styled(Dialog)`
   border-radius: 10px;
   padding: 32px;
   width: 80%;
+`
+
+export const DialogActions = styled.div`
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 32px;
 `
