@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Entry from "components/Entry";
 import Input from "components/Input";
 import {
@@ -36,6 +36,10 @@ const AddFieldDialog = ({
   const [name, setName] = useState("");
   const [value, setValue] = useState("");
   const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    cleanUp();
+  }, [isOpen]);
 
   function cleanUp() {
     setName("");

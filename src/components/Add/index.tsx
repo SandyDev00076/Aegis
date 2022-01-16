@@ -12,6 +12,7 @@ import {
 } from "styles/shared";
 import { IField } from "types/Field";
 import AddFieldDialog from "./AddFieldDialog";
+import DeleteFieldDialog from "./DeleteFieldDialog";
 import FieldCard from "./FieldCard";
 import Header from "./Header";
 import NoFields from "./NoFields";
@@ -44,6 +45,7 @@ const Add = () => {
     },
   ]);
   const [addFieldDialog, showAddFieldDialog] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState<IField>();
 
   const addCollection = useCollections((state) => state.addCollection);
 
@@ -77,7 +79,14 @@ const Add = () => {
           ) : (
             <Fields>
               {fields.map((field) => (
-                <FieldCard field={field} key={field.id} />
+                <FieldCard
+                  field={field}
+                  key={field.id}
+                  onFieldDelete={() => {
+                    console.log("delete clicked");
+                    setItemToDelete(field);
+                  }}
+                />
               ))}
             </Fields>
           )}
@@ -103,6 +112,20 @@ const Add = () => {
         handleClose={() => showAddFieldDialog(false)}
         onFieldSubmit={(field) => setFields((prev) => [field, ...prev])}
       />
+      {itemToDelete !== undefined && (
+        <DeleteFieldDialog
+          handleClose={() => setItemToDelete(undefined)}
+          fieldName={itemToDelete.name}
+          onConfirmation={() => {
+            const indexToDelete = fields.findIndex(
+              (field) => field.id === itemToDelete.id
+            );
+            if (indexToDelete > -1) {
+              fields.splice(indexToDelete, 1);
+            }
+          }}
+        />
+      )}
     </PageContainer>
   );
 };

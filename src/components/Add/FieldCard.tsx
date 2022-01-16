@@ -8,6 +8,7 @@ import { DeleteIcon, EditIcon } from "assets/icons";
 
 interface IFieldCardProps {
   field: IField;
+  onFieldDelete: () => void;
 }
 
 const Container = styled.div`
@@ -26,7 +27,7 @@ const Action = styled(IconButton)`
   }
 `;
 
-const FieldCard = ({ field }: IFieldCardProps) => {
+const FieldCard = ({ field, onFieldDelete }: IFieldCardProps) => {
   return (
     <Container>
       <Entry label={field.name} noBottomMargin>
@@ -36,7 +37,7 @@ const FieldCard = ({ field }: IFieldCardProps) => {
         <Action>
           <EditIcon />
         </Action>
-        <Action>
+        <Action onClick={onFieldDelete}>
           <DeleteIcon />
         </Action>
       </Actions>

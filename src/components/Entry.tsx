@@ -14,7 +14,7 @@ const Entry = ({
   noInput = false,
   noBottomMargin = false,
 }: IEntryProps) => {
-  const Container = styled.label`
+  const Container = styled.div`
     display: block;
     margin-bottom: ${noBottomMargin ? "0" : "16px"};
   `;
