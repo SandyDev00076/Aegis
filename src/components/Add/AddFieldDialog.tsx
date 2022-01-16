@@ -55,7 +55,6 @@ const AddFieldDialog = ({
       value,
       hidden,
     });
-    cleanUp();
     handleClose();
   }
 
