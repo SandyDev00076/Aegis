@@ -37,6 +37,12 @@ const AddFieldDialog = ({
   const [value, setValue] = useState("");
   const [hidden, setHidden] = useState(false);
 
+  function cleanUp() {
+    setName("");
+    setValue("");
+    setHidden(false);
+  }
+
   function onFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     onFieldSubmit({
@@ -45,6 +51,7 @@ const AddFieldDialog = ({
       value,
       hidden,
     });
+    cleanUp();
     handleClose();
   }
 

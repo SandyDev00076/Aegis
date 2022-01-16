@@ -46,3 +46,7 @@ button:disabled {
   filter: opacity(0.5);
   cursor: default;
 }
+
+button:focus {
+  border: 1px solid #b4b4b4;
+}
