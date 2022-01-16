@@ -14,11 +14,11 @@ const Entry = ({
   noInput = false,
   noBottomMargin = false,
 }: IEntryProps) => {
-  const Container = styled.div`
-    display: block;
+  const Container = styled.section`
     margin-bottom: ${noBottomMargin ? "0" : "16px"};
   `;
-  const FieldLabel = styled.div`
+  const FieldLabel = styled.label`
+    display: block;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 0.8rem;
