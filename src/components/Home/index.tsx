@@ -64,26 +64,36 @@ const Home = () => {
         </RestOfTheScreen>
       ) : (
         <>
-          <SectionTitle>Favorites ({favorites.length})</SectionTitle>
-          <CollectionCards>
-            {favorites.map((collection, index) => (
-              <CollectionCard
-                collection={collection}
-                index={index}
-                key={collection.id}
-              />
-            ))}
-          </CollectionCards>
-          <SectionTitle>Collections ({otherCollections.length})</SectionTitle>
-          <CollectionCards>
-            {otherCollections.map((collection, index) => (
-              <CollectionCard
-                collection={collection}
-                index={index}
-                key={collection.id}
-              />
-            ))}
-          </CollectionCards>
+          {favorites.length !== 0 && (
+            <section>
+              <SectionTitle>Favorites ({favorites.length})</SectionTitle>
+              <CollectionCards>
+                {favorites.map((collection, index) => (
+                  <CollectionCard
+                    collection={collection}
+                    index={index}
+                    key={collection.id}
+                  />
+                ))}
+              </CollectionCards>
+            </section>
+          )}
+          {otherCollections.length !== 0 && (
+            <section>
+              <SectionTitle>
+                Collections ({otherCollections.length})
+              </SectionTitle>
+              <CollectionCards>
+                {otherCollections.map((collection, index) => (
+                  <CollectionCard
+                    collection={collection}
+                    index={index}
+                    key={collection.id}
+                  />
+                ))}
+              </CollectionCards>
+            </section>
+          )}
         </>
       )}
       <AddButton to="/add">

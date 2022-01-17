@@ -4,11 +4,12 @@ import { Colors } from "styles/colors";
 import { IField } from "types/Field";
 import Entry from "components/Entry";
 import { Actions, IconButton } from "styles/shared";
-import { DeleteIcon, EditIcon } from "assets/icons";
+import { DeleteIcon, EditIcon, SafeIcon, UnSafeIcon } from "assets/icons";
 
 interface IFieldCardProps {
   field: IField;
   onFieldDelete: () => void;
+  onHiddenToggle: () => void;
 }
 
 const Container = styled.div`
@@ -27,20 +28,31 @@ const Action = styled(IconButton)`
   }
 `;
 
-const FieldCard = ({ field, onFieldDelete }: IFieldCardProps) => {
+const FieldCardActions = styled(Actions)`
+  gap: 10px;
+`;
+
+const FieldCard = ({
+  field,
+  onFieldDelete,
+  onHiddenToggle,
+}: IFieldCardProps) => {
   return (
     <Container>
       <Entry label={field.name} noBottomMargin>
         {field.value}
       </Entry>
-      <Actions>
+      <FieldCardActions>
+        <Action type="button" onClick={onHiddenToggle}>
+          {field.hidden ? <SafeIcon /> : <UnSafeIcon />}
+        </Action>
         <Action type="button">
           <EditIcon />
         </Action>
         <Action type="button" onClick={onFieldDelete}>
           <DeleteIcon />
         </Action>
-      </Actions>
+      </FieldCardActions>
     </Container>
   );
 };

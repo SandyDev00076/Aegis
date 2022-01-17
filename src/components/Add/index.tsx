@@ -58,6 +58,15 @@ const Add = () => {
     navigate("/");
   }
 
+  function toggleHidden(id: string) {
+    const newFields = [...fields];
+    const fieldToUpdate = newFields.findIndex((field) => field.id === id);
+    if (fieldToUpdate > -1) {
+      newFields[fieldToUpdate].hidden = !newFields[fieldToUpdate].hidden;
+    }
+    setFields(newFields);
+  }
+
   return (
     <PageContainer>
       <Header />
@@ -78,10 +87,8 @@ const Add = () => {
                 <FieldCard
                   field={field}
                   key={field.id}
-                  onFieldDelete={() => {
-                    console.log("delete clicked");
-                    setItemToDelete(field);
-                  }}
+                  onFieldDelete={() => setItemToDelete(field)}
+                  onHiddenToggle={() => toggleHidden(field.id)}
                 />
               ))}
             </Fields>
