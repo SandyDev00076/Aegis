@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Colors } from "styles/colors";
+import { fieldCardBorder } from "styles/colors";
 import { IField } from "types/Field";
 import Entry from "components/Entry";
 import { Actions, IconButton } from "styles/shared";
@@ -15,7 +15,7 @@ interface IFieldCardProps {
 const Container = styled.div`
   padding: 16px;
   border-radius: 10px;
-  border: 1px solid ${Colors.fieldCardBorder};
+  border: 1px solid ${fieldCardBorder};
   margin-bottom: 8px;
   display: flex;
   align-items: center;

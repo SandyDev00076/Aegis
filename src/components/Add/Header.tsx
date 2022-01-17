@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { CloseIcon } from "assets/icons";
+import { CloseIcon, StarIcon, StarOutlineIcon } from "assets/icons";
 import {
   Actions,
   IconButton,
@@ -8,6 +8,12 @@ import {
   PageTitle,
 } from "styles/shared";
 import { useNavigate } from "react-router-dom";
+import { favorite, favoriteHover } from "styles/colors";
+
+interface IHeaderProps {
+  isFavorite: boolean;
+  onFavoriteToggle: () => void;
+}
 
 const Action = styled(IconButton)`
   & > svg {
@@ -15,13 +21,25 @@ const Action = styled(IconButton)`
   }
 `;
 
-const Header = () => {
+const FavoriteAction = styled(Action)`
+  & > svg {
+    fill: ${favorite};
+    &:hover {
+      fill: ${favoriteHover};
+    }
+  }
+`;
+
+const Header = ({ isFavorite, onFavoriteToggle }: IHeaderProps) => {
   const navigate = useNavigate();
 
   return (
     <PageHeaderContainer>
       <PageTitle>add</PageTitle>
       <Actions>
+        <FavoriteAction onClick={onFavoriteToggle}>
+          {isFavorite ? <StarIcon /> : <StarOutlineIcon />}
+        </FavoriteAction>
         <Action
           onClick={() =>
             navigate("/", {

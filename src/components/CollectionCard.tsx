@@ -4,11 +4,11 @@ import { Gradient1 } from "../styles/cardBackgrounds";
 import { ICollection } from "../types/Collection";
 import { Actions, IconButton } from "../styles/shared";
 import { EditIcon, StarIcon, StarOutlineIcon } from "../assets/icons";
-import { Colors } from "../styles/colors";
+import { favorite, favoriteHover } from "../styles/colors";
 
 interface ICollectionCardProps {
   collection: ICollection;
-  index: number;
+  onFavoriteToggle: () => void;
 }
 
 const Container = styled(Gradient1)`
@@ -27,7 +27,7 @@ const Name = styled.h2`
 `;
 
 const CollectionActions = styled(Actions)`
-  gap: 8px;
+  gap: 10px;
 `;
 
 const Action = styled(IconButton)`
@@ -38,9 +38,9 @@ const Action = styled(IconButton)`
 
 const FavoriteAction = styled(Action)`
   & > svg {
-    fill: ${Colors.favorite};
+    fill: ${favorite};
     &:hover {
-      fill: ${Colors.favoriteHover};
+      fill: ${favoriteHover};
     }
   }
 `;
@@ -60,13 +60,16 @@ const FieldValue = styled.div`
   font-size: 1rem;
 `;
 
-const CollectionCard = ({ collection }: ICollectionCardProps) => {
+const CollectionCard = ({
+  collection,
+  onFavoriteToggle,
+}: ICollectionCardProps) => {
   return (
     <Container>
       <Header>
         <Name>{collection.name}</Name>
         <CollectionActions>
-          <FavoriteAction>
+          <FavoriteAction onClick={onFavoriteToggle}>
             {collection.favorite ? <StarIcon /> : <StarOutlineIcon />}
           </FavoriteAction>
           <Action>

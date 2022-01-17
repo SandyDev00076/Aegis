@@ -6,6 +6,7 @@ import CollectionCard from "components/CollectionCard";
 import Header from "./Header";
 import NoCollections from "components/NoCollections";
 import Input from "components/Input";
+import { useCollections } from "hooks/useCollections";
 
 const SearchInput = styled(Input)`
   margin-bottom: 32px;
@@ -20,6 +21,7 @@ const RestOfTheScreen = styled.div`
 const Search = () => {
   const [query, setQuery] = useState("");
   const filteredCollections = useSearch(query);
+  const updateCollection = useCollections((state) => state.updateCollection);
 
   return (
     <PageContainer>
@@ -42,11 +44,16 @@ const Search = () => {
         </RestOfTheScreen>
       ) : (
         <CollectionCards>
-          {filteredCollections.map((collection, index) => (
+          {filteredCollections.map((collection) => (
             <CollectionCard
-              collection={collection}
-              index={index}
               key={collection.id}
+              collection={collection}
+              onFavoriteToggle={() =>
+                updateCollection(collection.id, {
+                  ...collection,
+                  favorite: !collection.favorite,
+                })
+              }
             />
           ))}
         </CollectionCards>

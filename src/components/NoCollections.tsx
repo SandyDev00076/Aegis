@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
 import React from "react";
+import styled from "@emotion/styled";
 import { WarningIcon } from "../assets/icons";
-import { Colors } from "../styles/colors";
+import { primaryLightest, textSecondary } from "../styles/colors";
 
 interface INoCollectionsProps {
   line2: JSX.Element;
@@ -16,7 +16,7 @@ const Container = styled.section`
 const Icon = styled(WarningIcon)`
   height: 64px;
   width: auto;
-  fill: ${Colors.primaryLightest};
+  fill: ${primaryLightest};
   margin-bottom: 8px;
 `;
 
@@ -24,13 +24,13 @@ const Line1 = styled.h1`
   font-size: 1.2rem;
   font-weight: normal;
   margin-bottom: 4px;
-  color: ${Colors.textSecondary};
+  color: ${textSecondary};
 `;
 
 const Line2 = styled.h2`
   font-size: 0.8rem;
   font-weight: normal;
-  color: ${Colors.textSecondary};
+  color: ${textSecondary};
 `;
 
 const NoCollections = ({ line2 }: INoCollectionsProps) => {

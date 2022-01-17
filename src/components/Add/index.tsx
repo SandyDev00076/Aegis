@@ -40,6 +40,7 @@ const Add = () => {
   const [fields, setFields] = useState<IField[]>([]);
   const [addFieldDialog, showAddFieldDialog] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<IField>();
+  const [favorite, setFavorite] = useState<boolean>(false);
 
   const addCollection = useCollections((state) => state.addCollection);
   const navigate = useNavigate();
@@ -51,7 +52,7 @@ const Add = () => {
       id: `collection-${nanoid(5)}`,
       name,
       fields,
-      favorite: false,
+      favorite,
       createdAt: curr,
       updatedAt: curr,
     });
@@ -69,7 +70,10 @@ const Add = () => {
 
   return (
     <PageContainer>
-      <Header />
+      <Header
+        isFavorite={favorite}
+        onFavoriteToggle={() => setFavorite((prev) => !prev)}
+      />
       <form onSubmit={onFormSubmit}>
         <Entry label="Collection Name">
           <Input

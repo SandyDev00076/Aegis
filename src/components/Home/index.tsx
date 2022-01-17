@@ -6,7 +6,7 @@ import CollectionCard from "components/CollectionCard";
 import { ActionLink, CollectionCards, PageContainer } from "styles/shared";
 import { AddIcon } from "assets/icons";
 import NoCollections from "components/NoCollections";
-import { Colors } from "styles/colors";
+import { primary, primaryLight, textInvert } from "styles/colors";
 
 const SectionTitle = styled.h5`
   font-size: 0.8rem;
@@ -25,24 +25,18 @@ const AddButton = styled(ActionLink)`
   position: fixed;
   bottom: 24px;
   right: 32px;
-  color: ${Colors.textInvert};
-  background: linear-gradient(
-    150deg,
-    ${Colors.primary},
-    ${Colors.primaryLight}
-  );
+  color: ${textInvert};
+  background: linear-gradient(150deg, ${primary}, ${primaryLight});
 
   &:hover {
-    background: linear-gradient(
-      230deg,
-      ${Colors.primary},
-      ${Colors.primaryLight}
-    );
+    background: linear-gradient(230deg, ${primary}, ${primaryLight});
   }
 `;
 
 const Home = () => {
   const collections = useCollections((state) => state.collections);
+  const updateCollection = useCollections((state) => state.updateCollection);
+
   const favorites = collections.filter((collection) => collection.favorite);
   const otherCollections = collections.filter(
     (collection) => !collection.favorite
@@ -68,11 +62,16 @@ const Home = () => {
             <section>
               <SectionTitle>Favorites ({favorites.length})</SectionTitle>
               <CollectionCards>
-                {favorites.map((collection, index) => (
+                {favorites.map((collection) => (
                   <CollectionCard
-                    collection={collection}
-                    index={index}
                     key={collection.id}
+                    collection={collection}
+                    onFavoriteToggle={() =>
+                      updateCollection(collection.id, {
+                        ...collection,
+                        favorite: !collection.favorite,
+                      })
+                    }
                   />
                 ))}
               </CollectionCards>
@@ -84,11 +83,16 @@ const Home = () => {
                 Collections ({otherCollections.length})
               </SectionTitle>
               <CollectionCards>
-                {otherCollections.map((collection, index) => (
+                {otherCollections.map((collection) => (
                   <CollectionCard
-                    collection={collection}
-                    index={index}
                     key={collection.id}
+                    collection={collection}
+                    onFavoriteToggle={() =>
+                      updateCollection(collection.id, {
+                        ...collection,
+                        favorite: !collection.favorite,
+                      })
+                    }
                   />
                 ))}
               </CollectionCards>

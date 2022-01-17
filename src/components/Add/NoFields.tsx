@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Colors } from "styles/colors";
+import { textSecondary, whiteTint } from "styles/colors";
 
 const Container = styled.section`
-  background-color: ${Colors.whiteTint};
+  background-color: ${whiteTint};
   border-radius: 10px;
   display: grid;
   place-items: center;
@@ -16,7 +16,7 @@ const Panel = styled.div`
 
 const Line1 = styled.h1`
   font-size: 1.2rem;
-  color: ${Colors.textSecondary};
+  color: ${textSecondary};
 `;
 
 const Line2 = styled.h2`
