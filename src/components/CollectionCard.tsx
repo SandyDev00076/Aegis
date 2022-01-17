@@ -4,7 +4,7 @@ import { Gradient1 } from "../styles/cardBackgrounds";
 import { ICollection } from "../types/Collection";
 import { Actions, IconButton } from "../styles/shared";
 import { EditIcon, StarIcon, StarOutlineIcon } from "../assets/icons";
-import { Colors } from "../styles/colors";
+import { favorite, favoriteHover } from "../styles/colors";
 
 interface ICollectionCardProps {
   collection: ICollection;
@@ -38,9 +38,9 @@ const Action = styled(IconButton)`
 
 const FavoriteAction = styled(Action)`
   & > svg {
-    fill: ${Colors.favorite};
+    fill: ${favorite};
     &:hover {
-      fill: ${Colors.favoriteHover};
+      fill: ${favoriteHover};
     }
   }
 `;

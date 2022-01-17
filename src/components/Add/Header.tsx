@@ -8,7 +8,7 @@ import {
   PageTitle,
 } from "styles/shared";
 import { useNavigate } from "react-router-dom";
-import { Colors } from "styles/colors";
+import { favorite, favoriteHover } from "styles/colors";
 
 interface IHeaderProps {
   isFavorite: boolean;
@@ -23,9 +23,9 @@ const Action = styled(IconButton)`
 
 const FavoriteAction = styled(Action)`
   & > svg {
-    fill: ${Colors.favorite};
+    fill: ${favorite};
     &:hover {
-      fill: ${Colors.favoriteHover};
+      fill: ${favoriteHover};
     }
   }
 `;

@@ -1,7 +1,17 @@
 import styled from "@emotion/styled";
 import Dialog from "@reach/dialog";
 import { Link } from "react-router-dom";
-import { Colors } from "./colors";
+import {
+  primary,
+  primaryHover,
+  primaryLighter,
+  secondary,
+  secondaryLight,
+  success,
+  successLight,
+  text,
+  textInvert,
+} from "./colors";
 
 export const ActionButton = styled.button`
   height: 60px;
@@ -16,43 +26,27 @@ export const ActionButton = styled.button`
   & > svg {
     height: 32px;
     width: auto;
-    fill: ${Colors.textInvert};
+    fill: ${textInvert};
   }
-`
+`;
 
 export const SuccessActionButton = styled(ActionButton)`
-background: linear-gradient(
-  150deg,
-  ${Colors.success},
-  ${Colors.successLight}
-);
+  background: linear-gradient(150deg, ${success}, ${successLight});
 
-&:hover {
-  background: linear-gradient(
-    230deg,
-    ${Colors.success},
-    ${Colors.successLight}
-  );
-}
+  &:hover {
+    background: linear-gradient(230deg, ${success}, ${successLight});
+  }
 `;
 
 export const SecondaryActionButton = styled(ActionButton)`
-& > svg {
-  fill: ${Colors.text};
-}
-background: linear-gradient(
-  150deg,
-  ${Colors.secondary},
-  ${Colors.secondaryLight}
-);
+  & > svg {
+    fill: ${text};
+  }
+  background: linear-gradient(150deg, ${secondary}, ${secondaryLight});
 
-&:hover {
-  background: linear-gradient(
-    230deg,
-    ${Colors.secondary},
-    ${Colors.secondaryLight}
-  );
-}
+  &:hover {
+    background: linear-gradient(230deg, ${secondary}, ${secondaryLight});
+  }
 `;
 
 export const ActionLink = styled(Link)`
@@ -68,21 +62,21 @@ export const ActionLink = styled(Link)`
   & > svg {
     height: 32px;
     width: auto;
-    fill: ${Colors.textInvert};
+    fill: ${textInvert};
   }
-`
+`;
 
 export const IconButton = styled.button`
-    border: none;
-    padding: 0;
-    background: transparent;
-    & > svg {
-      fill: ${Colors.primary};
-      width: auto;
-      &:hover {
-          fill: ${Colors.primaryHover};
-      }
+  border: none;
+  padding: 0;
+  background: transparent;
+  & > svg {
+    fill: ${primary};
+    width: auto;
+    &:hover {
+      fill: ${primaryHover};
     }
+  }
 `;
 
 export const IconLink = styled(Link)`
@@ -90,13 +84,13 @@ export const IconLink = styled(Link)`
   padding: 0;
   background: transparent;
   & > svg {
-    fill: ${Colors.primary};
+    fill: ${primary};
     width: auto;
     &:hover {
-        fill: ${Colors.primaryHover};
+      fill: ${primaryHover};
     }
   }
-`
+`;
 
 export const Actions = styled.div`
   display: flex;
@@ -120,17 +114,17 @@ export const PageHeaderContainer = styled.header`
 export const PageTitle = styled.h1`
   font-size: 2rem;
   letter-spacing: 1px;
-  color: ${Colors.primaryLighter};
+  color: ${primaryLighter};
 `;
 
 export const DialogHeader = styled.header`
   margin-bottom: 32px;
-`
+`;
 
 export const DialogTitle = styled.h1`
   font-size: 1.5rem;
   letter-spacing: 1px;
-  color: ${Colors.primaryLighter};
+  color: ${primaryLighter};
 `;
 
 export const CollectionCards = styled.section`
@@ -144,7 +138,7 @@ export const CustomDialog = styled(Dialog)`
   border-radius: 10px;
   padding: 32px;
   width: 80%;
-`
+`;
 
 export const DialogActions = styled.div`
   display: flex;
@@ -152,4 +146,4 @@ export const DialogActions = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 32px;
-`
+`;
