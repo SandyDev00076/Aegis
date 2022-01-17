@@ -1,6 +1,5 @@
 import create from 'zustand';
 import type { ICollection } from '../types/Collection';
-import { dummyCollections } from '../utils/dummyCollections';
 
 interface IState {
     collections: ICollection[];
@@ -10,7 +9,7 @@ interface IState {
 }
 
 export const useCollections = create<IState>(set => ({
-    collections: dummyCollections,
+    collections: [],
     deleteCollection: (index: string) => set(state => {
         const collections = [...state.collections];
         const itemToDelete = collections.findIndex(collection => collection.id === index);

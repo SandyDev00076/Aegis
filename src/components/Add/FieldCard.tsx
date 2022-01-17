@@ -34,10 +34,10 @@ const FieldCard = ({ field, onFieldDelete }: IFieldCardProps) => {
         {field.value}
       </Entry>
       <Actions>
-        <Action>
+        <Action type="button">
           <EditIcon />
         </Action>
-        <Action onClick={onFieldDelete}>
+        <Action type="button" onClick={onFieldDelete}>
           <DeleteIcon />
         </Action>
       </Actions>

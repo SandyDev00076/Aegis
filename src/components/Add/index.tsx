@@ -37,14 +37,7 @@ const Fields = styled.div`
 
 const Add = () => {
   const [name, setName] = useState("");
-  const [fields, setFields] = useState<IField[]>([
-    {
-      id: "1",
-      hidden: false,
-      name: "hello",
-      value: "thisisvalue",
-    },
-  ]);
+  const [fields, setFields] = useState<IField[]>([]);
   const [addFieldDialog, showAddFieldDialog] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<IField>();
 
