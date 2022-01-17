@@ -44,7 +44,7 @@ const Search = () => {
         </RestOfTheScreen>
       ) : (
         <CollectionCards>
-          {filteredCollections.map((collection, index) => (
+          {filteredCollections.map((collection) => (
             <CollectionCard
               key={collection.id}
               collection={collection}
