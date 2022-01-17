@@ -83,7 +83,7 @@ const Home = () => {
                 Collections ({otherCollections.length})
               </SectionTitle>
               <CollectionCards>
-                {otherCollections.map((collection, index) => (
+                {otherCollections.map((collection) => (
                   <CollectionCard
                     key={collection.id}
                     collection={collection}
