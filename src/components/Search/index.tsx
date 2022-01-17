@@ -1,23 +1,14 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { useSearch } from "hooks/useSearch";
-import { Colors } from "styles/colors";
 import { CollectionCards, PageContainer } from "styles/shared";
 import CollectionCard from "components/CollectionCard";
 import Header from "./Header";
 import NoCollections from "components/NoCollections";
+import Input from "components/Input";
 
-const SearchInput = styled.input`
-  padding: 8px;
-  font-size: 1.1rem;
-  border: none;
-  width: 100%;
-  border-bottom: 2px solid ${Colors.primaryLighter};
+const SearchInput = styled(Input)`
   margin-bottom: 32px;
-
-  &:focus {
-    border-bottom-color: ${Colors.primary};
-  }
 `;
 
 const RestOfTheScreen = styled.div`
