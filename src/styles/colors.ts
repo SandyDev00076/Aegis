@@ -8,8 +8,8 @@ export const Colors = {
     secondary: '#efefef',
     secondaryLight: '#e2e2e2',
 
-    favorite: '#fde3a2',
-    favoriteHover: '#fdd980',
+    favorite: '#ff4c4c',
+    favoriteHover: '#ff5d5d',
 
     text: '#333333',
     textSecondary: '#5d5d5d',
