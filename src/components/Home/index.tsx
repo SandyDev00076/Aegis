@@ -35,6 +35,8 @@ const AddButton = styled(ActionLink)`
 
 const Home = () => {
   const collections = useCollections((state) => state.collections);
+  const updateCollection = useCollections((state) => state.updateCollection);
+
   const favorites = collections.filter((collection) => collection.favorite);
   const otherCollections = collections.filter(
     (collection) => !collection.favorite
@@ -60,11 +62,16 @@ const Home = () => {
             <section>
               <SectionTitle>Favorites ({favorites.length})</SectionTitle>
               <CollectionCards>
-                {favorites.map((collection, index) => (
+                {favorites.map((collection) => (
                   <CollectionCard
-                    collection={collection}
-                    index={index}
                     key={collection.id}
+                    collection={collection}
+                    onFavoriteToggle={() =>
+                      updateCollection(collection.id, {
+                        ...collection,
+                        favorite: !collection.favorite,
+                      })
+                    }
                   />
                 ))}
               </CollectionCards>
@@ -78,9 +85,14 @@ const Home = () => {
               <CollectionCards>
                 {otherCollections.map((collection, index) => (
                   <CollectionCard
-                    collection={collection}
-                    index={index}
                     key={collection.id}
+                    collection={collection}
+                    onFavoriteToggle={() =>
+                      updateCollection(collection.id, {
+                        ...collection,
+                        favorite: !collection.favorite,
+                      })
+                    }
                   />
                 ))}
               </CollectionCards>
