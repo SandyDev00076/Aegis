@@ -5,6 +5,7 @@ import Input from "components/Input";
 import { useCollections } from "hooks/useCollections";
 import { nanoid } from "nanoid";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   PageContainer,
   SecondaryActionButton,
@@ -48,6 +49,7 @@ const Add = () => {
   const [itemToDelete, setItemToDelete] = useState<IField>();
 
   const addCollection = useCollections((state) => state.addCollection);
+  const navigate = useNavigate();
 
   function onFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -60,6 +62,7 @@ const Add = () => {
       createdAt: curr,
       updatedAt: curr,
     });
+    navigate("/");
   }
 
   return (

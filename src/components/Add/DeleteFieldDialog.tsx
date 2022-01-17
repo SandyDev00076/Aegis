@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "@emotion/styled";
 import {
   CustomDialog,
   DialogActions,
@@ -7,7 +8,6 @@ import {
   SecondaryActionButton,
   SuccessActionButton,
 } from "styles/shared";
-import styled from "@emotion/styled";
 import { CloseIcon, DoneIcon } from "assets/icons";
 
 interface IDeleteFieldDialogProps {
