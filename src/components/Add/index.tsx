@@ -41,6 +41,7 @@ const Add = () => {
   const [addFieldDialog, showAddFieldDialog] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<IField>();
   const [favorite, setFavorite] = useState<boolean>(false);
+  const [fieldToEdit, setFieldToEdit] = useState<IField>();
 
   const addCollection = useCollections((state) => state.addCollection);
   const navigate = useNavigate();
@@ -68,6 +69,24 @@ const Add = () => {
     setFields(newFields);
   }
 
+  function onFieldSubmit(field: IField) {
+    // check if this field is already present in the list
+    const fieldToFind = fields.findIndex(
+      (otherField) => otherField.id === field.id
+    );
+    if (fieldToFind > -1) {
+      // field is already present in the list,
+      // so edit the already present field
+      const newFields = [...fields];
+      newFields[fieldToFind] = field;
+      setFields(newFields);
+    } else {
+      // field is not present in the list,
+      // so append the field to the start of the list
+      setFields((prev) => [field, ...prev]);
+    }
+  }
+
   return (
     <PageContainer>
       <Header
@@ -91,6 +110,7 @@ const Add = () => {
                 <FieldCard
                   field={field}
                   key={field.id}
+                  onEditClick={() => setFieldToEdit(field)}
                   onFieldDelete={() => setItemToDelete(field)}
                   onHiddenToggle={() => toggleHidden(field.id)}
                 />
@@ -115,9 +135,13 @@ const Add = () => {
       </form>
       {/* Dialogs */}
       <AddFieldDialog
-        isOpen={addFieldDialog}
-        handleClose={() => showAddFieldDialog(false)}
-        onFieldSubmit={(field) => setFields((prev) => [field, ...prev])}
+        isOpen={fieldToEdit !== undefined || addFieldDialog}
+        handleClose={() => {
+          showAddFieldDialog(false);
+          setFieldToEdit(undefined);
+        }}
+        onFieldSubmit={onFieldSubmit}
+        fieldToEdit={fieldToEdit}
       />
       {itemToDelete !== undefined && (
         <DeleteFieldDialog
