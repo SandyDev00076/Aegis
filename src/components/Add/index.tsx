@@ -136,6 +136,7 @@ const Add = () => {
       <Header
         isFavorite={favorite}
         onFavoriteToggle={() => setFavorite((prev) => !prev)}
+        showEdit={collectionToEdit !== undefined}
       />
       <form onSubmit={onFormSubmit}>
         <Entry label="Collection Name">
