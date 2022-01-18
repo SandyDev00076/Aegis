@@ -18,6 +18,7 @@ interface IAddFieldDialogProps {
   isOpen: boolean;
   handleClose: () => void;
   onFieldSubmit: (k: IField) => void;
+  fieldToEdit?: IField;
 }
 
 const SubmitButton = styled(SuccessActionButton)`
@@ -32,14 +33,19 @@ const AddFieldDialog = ({
   isOpen,
   handleClose,
   onFieldSubmit,
+  fieldToEdit,
 }: IAddFieldDialogProps) => {
   const [name, setName] = useState("");
   const [value, setValue] = useState("");
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    cleanUp();
-  }, [isOpen]);
+    if (fieldToEdit) {
+      setName(fieldToEdit.name);
+      setValue(fieldToEdit.value);
+      setHidden(fieldToEdit.hidden);
+    }
+  }, [fieldToEdit]);
 
   function cleanUp() {
     setName("");
@@ -50,11 +56,12 @@ const AddFieldDialog = ({
   function onFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     onFieldSubmit({
-      id: `field-${nanoid(5)}`,
+      id: fieldToEdit ? fieldToEdit.id : `field-${nanoid(5)}`,
       name,
       value,
       hidden,
     });
+    cleanUp();
     handleClose();
   }
 
@@ -62,10 +69,13 @@ const AddFieldDialog = ({
     <CustomDialog
       aria-label="add-field-dialog"
       isOpen={isOpen}
-      onDismiss={handleClose}
+      onDismiss={() => {
+        cleanUp();
+        handleClose();
+      }}
     >
       <DialogHeader>
-        <DialogTitle>add field</DialogTitle>
+        <DialogTitle>{fieldToEdit ? "edit" : "add"} field</DialogTitle>
       </DialogHeader>
       <form onSubmit={onFormSubmit}>
         <Entry label="Name">

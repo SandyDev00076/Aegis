@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Gradient1 } from "../styles/cardBackgrounds";
 import { ICollection } from "../types/Collection";
-import { Actions, IconButton } from "../styles/shared";
+import { Actions, IconButton, IconLink } from "../styles/shared";
 import { EditIcon, StarIcon, StarOutlineIcon } from "../assets/icons";
 import { favorite, favoriteHover } from "../styles/colors";
 
@@ -31,6 +31,12 @@ const CollectionActions = styled(Actions)`
 `;
 
 const Action = styled(IconButton)`
+  & > svg {
+    height: 20px;
+  }
+`;
+
+const ActionLink = styled(IconLink)`
   & > svg {
     height: 20px;
   }
@@ -72,9 +78,9 @@ const CollectionCard = ({
           <FavoriteAction onClick={onFavoriteToggle}>
             {collection.favorite ? <StarIcon /> : <StarOutlineIcon />}
           </FavoriteAction>
-          <Action>
+          <ActionLink to={`/edit/${collection.id}`}>
             <EditIcon />
-          </Action>
+          </ActionLink>
         </CollectionActions>
       </Header>
       {collection.fields.map((field) => (

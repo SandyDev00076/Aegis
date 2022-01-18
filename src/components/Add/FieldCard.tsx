@@ -10,6 +10,7 @@ interface IFieldCardProps {
   field: IField;
   onFieldDelete: () => void;
   onHiddenToggle: () => void;
+  onEditClick: () => void;
 }
 
 const Container = styled.div`
@@ -36,6 +37,7 @@ const FieldCard = ({
   field,
   onFieldDelete,
   onHiddenToggle,
+  onEditClick,
 }: IFieldCardProps) => {
   return (
     <Container>
@@ -46,7 +48,7 @@ const FieldCard = ({
         <Action type="button" onClick={onHiddenToggle}>
           {field.hidden ? <SafeIcon /> : <UnSafeIcon />}
         </Action>
-        <Action type="button">
+        <Action type="button" onClick={onEditClick}>
           <EditIcon />
         </Action>
         <Action type="button" onClick={onFieldDelete}>

@@ -4,8 +4,8 @@ import Entry from "components/Entry";
 import Input from "components/Input";
 import { useCollections } from "hooks/useCollections";
 import { nanoid } from "nanoid";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useMemo, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   PageContainer,
   SecondaryActionButton,
@@ -41,21 +41,66 @@ const Add = () => {
   const [addFieldDialog, showAddFieldDialog] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<IField>();
   const [favorite, setFavorite] = useState<boolean>(false);
+  const [fieldToEdit, setFieldToEdit] = useState<IField>();
 
-  const addCollection = useCollections((state) => state.addCollection);
+  const [collections, addCollection, updateCollection] = useCollections(
+    (state) => [state.collections, state.addCollection, state.updateCollection]
+  );
   const navigate = useNavigate();
+
+  // get the URL params
+  const { id: idOfCollectionToEdit } = useParams<{
+    id: string;
+  }>();
+
+  const collectionToEdit = useMemo(() => {
+    if (idOfCollectionToEdit) {
+      // find the collection
+      const collectionToFind = collections.find(
+        (collection) => collection.id === idOfCollectionToEdit
+      );
+      if (collectionToFind === undefined) {
+        // id is there, but no collection was found
+        throw new Error("Rogue collection found");
+      }
+      // collection is present in the list
+      return collectionToFind;
+    } else {
+      // no collection ID available
+      return undefined;
+    }
+  }, [idOfCollectionToEdit]);
+
+  useEffect(() => {
+    if (collectionToEdit) {
+      setName(collectionToEdit.name);
+      setFields(collectionToEdit.fields);
+      setFavorite(collectionToEdit.favorite);
+    }
+  }, [collectionToEdit]);
 
   function onFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const curr = new Date().toISOString();
-    addCollection({
-      id: `collection-${nanoid(5)}`,
-      name,
-      fields,
-      favorite,
-      createdAt: curr,
-      updatedAt: curr,
-    });
+    if (collectionToEdit) {
+      updateCollection(collectionToEdit.id, {
+        id: collectionToEdit.id,
+        name,
+        fields,
+        favorite,
+        createdAt: collectionToEdit.createdAt,
+        updatedAt: curr,
+      });
+    } else {
+      addCollection({
+        id: `collection-${nanoid(5)}`,
+        name,
+        fields,
+        favorite,
+        createdAt: curr,
+        updatedAt: curr,
+      });
+    }
     navigate("/");
   }
 
@@ -68,11 +113,30 @@ const Add = () => {
     setFields(newFields);
   }
 
+  function onFieldSubmit(field: IField) {
+    // check if this field is already present in the list
+    const fieldToFind = fields.findIndex(
+      (otherField) => otherField.id === field.id
+    );
+    if (fieldToFind > -1) {
+      // field is already present in the list,
+      // so edit the already present field
+      const newFields = [...fields];
+      newFields[fieldToFind] = field;
+      setFields(newFields);
+    } else {
+      // field is not present in the list,
+      // so append the field to the start of the list
+      setFields((prev) => [field, ...prev]);
+    }
+  }
+
   return (
     <PageContainer>
       <Header
         isFavorite={favorite}
         onFavoriteToggle={() => setFavorite((prev) => !prev)}
+        showEdit={collectionToEdit !== undefined}
       />
       <form onSubmit={onFormSubmit}>
         <Entry label="Collection Name">
@@ -91,6 +155,7 @@ const Add = () => {
                 <FieldCard
                   field={field}
                   key={field.id}
+                  onEditClick={() => setFieldToEdit(field)}
                   onFieldDelete={() => setItemToDelete(field)}
                   onHiddenToggle={() => toggleHidden(field.id)}
                 />
@@ -115,9 +180,13 @@ const Add = () => {
       </form>
       {/* Dialogs */}
       <AddFieldDialog
-        isOpen={addFieldDialog}
-        handleClose={() => showAddFieldDialog(false)}
-        onFieldSubmit={(field) => setFields((prev) => [field, ...prev])}
+        isOpen={fieldToEdit !== undefined || addFieldDialog}
+        handleClose={() => {
+          showAddFieldDialog(false);
+          setFieldToEdit(undefined);
+        }}
+        onFieldSubmit={onFieldSubmit}
+        fieldToEdit={fieldToEdit}
       />
       {itemToDelete !== undefined && (
         <DeleteFieldDialog

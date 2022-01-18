@@ -13,6 +13,7 @@ import { favorite, favoriteHover } from "styles/colors";
 interface IHeaderProps {
   isFavorite: boolean;
   onFavoriteToggle: () => void;
+  showEdit: boolean;
 }
 
 const Action = styled(IconButton)`
@@ -30,12 +31,12 @@ const FavoriteAction = styled(Action)`
   }
 `;
 
-const Header = ({ isFavorite, onFavoriteToggle }: IHeaderProps) => {
+const Header = ({ isFavorite, onFavoriteToggle, showEdit }: IHeaderProps) => {
   const navigate = useNavigate();
 
   return (
     <PageHeaderContainer>
-      <PageTitle>add</PageTitle>
+      <PageTitle>{showEdit ? "edit" : "add"}</PageTitle>
       <Actions>
         <FavoriteAction onClick={onFavoriteToggle}>
           {isFavorite ? <StarIcon /> : <StarOutlineIcon />}
