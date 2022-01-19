@@ -2,7 +2,8 @@ import styled from "@emotion/styled";
 import { AddIcon, DoneIcon } from "assets/icons";
 import Entry from "components/Entry";
 import Input from "components/Input";
-import { useCollections } from "hooks/useCollections";
+import { db } from "db";
+import { useLiveQuery } from "dexie-react-hooks";
 import { nanoid } from "nanoid";
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -43,9 +44,8 @@ const Add = () => {
   const [favorite, setFavorite] = useState<boolean>(false);
   const [fieldToEdit, setFieldToEdit] = useState<IField>();
 
-  const [collections, addCollection, updateCollection] = useCollections(
-    (state) => [state.collections, state.addCollection, state.updateCollection]
-  );
+  const collections = useLiveQuery(() => db.collections.toArray()) ?? [];
+
   const navigate = useNavigate();
 
   // get the URL params
@@ -83,8 +83,8 @@ const Add = () => {
     e.preventDefault();
     const curr = new Date().toISOString();
     if (collectionToEdit) {
-      updateCollection(collectionToEdit.id, {
-        id: collectionToEdit.id,
+      // updating db
+      db.collections.update(collectionToEdit.id, {
         name,
         fields,
         favorite,
@@ -92,7 +92,8 @@ const Add = () => {
         updatedAt: curr,
       });
     } else {
-      addCollection({
+      // updating db
+      db.collections.add({
         id: `collection-${nanoid(5)}`,
         name,
         fields,
