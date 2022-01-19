@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "@emotion/styled";
 import Header from "./Header";
-import { useCollections } from "hooks/useCollections";
 import CollectionCard from "components/CollectionCard";
 import { ActionLink, CollectionCards, PageContainer } from "styles/shared";
 import { AddIcon } from "assets/icons";
 import NoCollections from "components/NoCollections";
 import { primary, primaryLight, textInvert } from "styles/colors";
+import { db } from "db";
+import { useLiveQuery } from "dexie-react-hooks";
 
 const SectionTitle = styled.h5`
   font-size: 0.8rem;
@@ -34,8 +35,11 @@ const AddButton = styled(ActionLink)`
 `;
 
 const Home = () => {
-  const collections = useCollections((state) => state.collections);
-  const updateCollection = useCollections((state) => state.updateCollection);
+  const collections = useLiveQuery(() => db.collections.toArray());
+
+  if (collections === undefined) {
+    return <div>Loading</div>;
+  }
 
   const favorites = collections.filter((collection) => collection.favorite);
   const otherCollections = collections.filter(
@@ -67,8 +71,7 @@ const Home = () => {
                     key={collection.id}
                     collection={collection}
                     onFavoriteToggle={() =>
-                      updateCollection(collection.id, {
-                        ...collection,
+                      db.collections.update(collection.id, {
                         favorite: !collection.favorite,
                       })
                     }
@@ -88,8 +91,7 @@ const Home = () => {
                     key={collection.id}
                     collection={collection}
                     onFavoriteToggle={() =>
-                      updateCollection(collection.id, {
-                        ...collection,
+                      db.collections.update(collection.id, {
                         favorite: !collection.favorite,
                       })
                     }
