@@ -22,6 +22,10 @@ const Search = () => {
   const [query, setQuery] = useState("");
   const filteredCollections = useSearch(query);
 
+  if (filteredCollections === undefined) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <PageContainer>
       <Header />

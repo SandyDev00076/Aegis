@@ -35,7 +35,11 @@ const AddButton = styled(ActionLink)`
 `;
 
 const Home = () => {
-  const collections = useLiveQuery(() => db.collections.toArray()) ?? [];
+  const collections = useLiveQuery(() => db.collections.toArray());
+
+  if (collections === undefined) {
+    return <div>Loading</div>;
+  }
 
   const favorites = collections.filter((collection) => collection.favorite);
   const otherCollections = collections.filter(

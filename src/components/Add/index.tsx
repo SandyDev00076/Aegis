@@ -44,7 +44,7 @@ const Add = () => {
   const [favorite, setFavorite] = useState<boolean>(false);
   const [fieldToEdit, setFieldToEdit] = useState<IField>();
 
-  const collections = useLiveQuery(() => db.collections.toArray()) ?? [];
+  const collections = useLiveQuery(() => db.collections.toArray());
 
   const navigate = useNavigate();
 
@@ -54,7 +54,7 @@ const Add = () => {
   }>();
 
   const collectionToEdit = useMemo(() => {
-    if (idOfCollectionToEdit) {
+    if (idOfCollectionToEdit && collections !== undefined) {
       // find the collection
       const collectionToFind = collections.find(
         (collection) => collection.id === idOfCollectionToEdit
@@ -69,7 +69,7 @@ const Add = () => {
       // no collection ID available
       return undefined;
     }
-  }, [idOfCollectionToEdit]);
+  }, [idOfCollectionToEdit, collections]);
 
   useEffect(() => {
     if (collectionToEdit) {
@@ -130,6 +130,10 @@ const Add = () => {
       // so append the field to the start of the list
       setFields((prev) => [field, ...prev]);
     }
+  }
+
+  if (collections === undefined) {
+    return <div>Loading...</div>;
   }
 
   return (
