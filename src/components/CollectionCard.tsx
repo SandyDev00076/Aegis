@@ -3,12 +3,18 @@ import styled from "@emotion/styled";
 import { Gradient1 } from "../styles/cardBackgrounds";
 import { ICollection } from "../types/Collection";
 import { Actions, IconButton, IconLink } from "../styles/shared";
-import { EditIcon, StarIcon, StarOutlineIcon } from "../assets/icons";
+import {
+  DeleteIcon,
+  EditIcon,
+  StarIcon,
+  StarOutlineIcon,
+} from "../assets/icons";
 import { favorite, favoriteHover } from "../styles/colors";
 
 interface ICollectionCardProps {
   collection: ICollection;
   onFavoriteToggle: () => void;
+  onDelete: () => void;
 }
 
 const Container = styled(Gradient1)`
@@ -69,6 +75,7 @@ const FieldValue = styled.div`
 const CollectionCard = ({
   collection,
   onFavoriteToggle,
+  onDelete,
 }: ICollectionCardProps) => {
   return (
     <Container>
@@ -81,6 +88,9 @@ const CollectionCard = ({
           <ActionLink to={`/edit/${collection.id}`}>
             <EditIcon />
           </ActionLink>
+          <Action onClick={onDelete}>
+            <DeleteIcon />
+          </Action>
         </CollectionActions>
       </Header>
       {collection.fields.map((field) => (
