@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { AddIcon, DoneIcon } from "assets/icons";
+import DeleteDialog from "components/DeleteDialog";
 import Entry from "components/Entry";
 import Input from "components/Input";
 import { db } from "db";
@@ -14,7 +15,6 @@ import {
 } from "styles/shared";
 import { IField } from "types/Field";
 import AddFieldDialog from "./AddFieldDialog";
-import DeleteFieldDialog from "./DeleteFieldDialog";
 import FieldCard from "./FieldCard";
 import Header from "./Header";
 import NoFields from "./NoFields";
@@ -194,9 +194,10 @@ const Add = () => {
         fieldToEdit={fieldToEdit}
       />
       {itemToDelete !== undefined && (
-        <DeleteFieldDialog
+        <DeleteDialog
+          item="field"
           handleClose={() => setItemToDelete(undefined)}
-          fieldName={itemToDelete.name}
+          itemName={itemToDelete.name}
           onConfirmation={() => {
             const indexToDelete = fields.findIndex(
               (field) => field.id === itemToDelete.id

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import Header from "./Header";
 import CollectionCard from "components/CollectionCard";
@@ -8,6 +8,8 @@ import NoCollections from "components/NoCollections";
 import { primary, primaryLight, textInvert } from "styles/colors";
 import { db } from "db";
 import { useLiveQuery } from "dexie-react-hooks";
+import { ICollection } from "types/Collection";
+import DeleteDialog from "components/DeleteDialog";
 
 const SectionTitle = styled.h5`
   font-size: 0.8rem;
@@ -36,6 +38,7 @@ const AddButton = styled(ActionLink)`
 
 const Home = () => {
   const collections = useLiveQuery(() => db.collections.toArray());
+  const [collectionToDelete, setCollectionToDelete] = useState<ICollection>();
 
   if (collections === undefined) {
     return <div>Loading</div>;
@@ -75,6 +78,7 @@ const Home = () => {
                         favorite: !collection.favorite,
                       })
                     }
+                    onDelete={() => setCollectionToDelete(collection)}
                   />
                 ))}
               </CollectionCards>
@@ -95,6 +99,7 @@ const Home = () => {
                         favorite: !collection.favorite,
                       })
                     }
+                    onDelete={() => setCollectionToDelete(collection)}
                   />
                 ))}
               </CollectionCards>
@@ -105,6 +110,17 @@ const Home = () => {
       <AddButton to="/add">
         <AddIcon />
       </AddButton>
+      {/* Dialogs */}
+      {collectionToDelete !== undefined && (
+        <DeleteDialog
+          item="collection"
+          handleClose={() => setCollectionToDelete(undefined)}
+          itemName={collectionToDelete.name}
+          onConfirmation={() => {
+            db.collections.delete(collectionToDelete.id);
+          }}
+        />
+      )}
     </PageContainer>
   );
 };

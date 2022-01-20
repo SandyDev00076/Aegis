@@ -7,6 +7,8 @@ import Header from "./Header";
 import NoCollections from "components/NoCollections";
 import Input from "components/Input";
 import { db } from "db";
+import DeleteDialog from "components/DeleteDialog";
+import { ICollection } from "types/Collection";
 
 const SearchInput = styled(Input)`
   margin-bottom: 32px;
@@ -21,6 +23,7 @@ const RestOfTheScreen = styled.div`
 const Search = () => {
   const [query, setQuery] = useState("");
   const filteredCollections = useSearch(query);
+  const [collectionToDelete, setCollectionToDelete] = useState<ICollection>();
 
   if (filteredCollections === undefined) {
     return <div>Loading...</div>;
@@ -32,6 +35,7 @@ const Search = () => {
       <SearchInput
         placeholder="type here"
         name="search"
+        autoFocus
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
@@ -56,9 +60,21 @@ const Search = () => {
                   favorite: !collection.favorite,
                 })
               }
+              onDelete={() => setCollectionToDelete(collection)}
             />
           ))}
         </CollectionCards>
+      )}
+      {/* Dialogs */}
+      {collectionToDelete !== undefined && (
+        <DeleteDialog
+          item="collection"
+          handleClose={() => setCollectionToDelete(undefined)}
+          itemName={collectionToDelete.name}
+          onConfirmation={() => {
+            db.collections.delete(collectionToDelete.id);
+          }}
+        />
       )}
     </PageContainer>
   );

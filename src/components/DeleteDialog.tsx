@@ -10,9 +10,10 @@ import {
 } from "styles/shared";
 import { CloseIcon, DoneIcon } from "assets/icons";
 
-interface IDeleteFieldDialogProps {
+interface IDeleteDialogProps {
+  item: "collection" | "field";
   handleClose: () => void;
-  fieldName: string;
+  itemName: string;
   onConfirmation: () => void;
 }
 
@@ -24,18 +25,19 @@ const CancelButton = styled(SecondaryActionButton)`
   height: 52px;
 `;
 
-const DeleteFieldDialog = ({
+const DeleteDialog = ({
+  item,
   handleClose,
-  fieldName,
+  itemName,
   onConfirmation,
-}: IDeleteFieldDialogProps) => {
+}: IDeleteDialogProps) => {
   return (
     <CustomDialog aria-label="add-field-dialog" onDismiss={handleClose}>
       <DialogHeader>
-        <DialogTitle>delete field</DialogTitle>
+        <DialogTitle>delete {item}</DialogTitle>
       </DialogHeader>
       <p>
-        Are you sure you want to delete the field <strong>{fieldName}</strong> ?
+        Are you sure you want to delete the {item} <strong>{itemName}</strong> ?
       </p>
       <DialogActions>
         <CancelButton onClick={handleClose}>
@@ -54,4 +56,4 @@ const DeleteFieldDialog = ({
   );
 };
 
-export default DeleteFieldDialog;
+export default DeleteDialog;
