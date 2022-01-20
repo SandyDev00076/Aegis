@@ -148,6 +148,7 @@ const Add = () => {
           <Input
             name="collection-name"
             value={name}
+            autoFocus
             onChange={(e) => setName(e.target.value)}
           />
         </Entry>
