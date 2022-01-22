@@ -10,6 +10,7 @@ import { db } from "db";
 import { useLiveQuery } from "dexie-react-hooks";
 import { ICollection } from "types/Collection";
 import DeleteDialog from "components/DeleteDialog";
+import Loading from "components/Loading";
 
 const SectionTitle = styled.h5`
   font-size: 0.8rem;
@@ -41,7 +42,7 @@ const Home = () => {
   const [collectionToDelete, setCollectionToDelete] = useState<ICollection>();
 
   if (collections === undefined) {
-    return <div>Loading</div>;
+    return <Loading />;
   }
 
   const favorites = collections.filter((collection) => collection.favorite);

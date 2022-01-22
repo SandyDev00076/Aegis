@@ -3,6 +3,7 @@ import { AddIcon, DoneIcon } from "assets/icons";
 import DeleteDialog from "components/DeleteDialog";
 import Entry from "components/Entry";
 import Input from "components/Input";
+import Loading from "components/Loading";
 import { db } from "db";
 import { useLiveQuery } from "dexie-react-hooks";
 import { nanoid } from "nanoid";
@@ -133,7 +134,7 @@ const Add = () => {
   }
 
   if (collections === undefined) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
