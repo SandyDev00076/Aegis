@@ -9,6 +9,7 @@ import Input from "components/Input";
 import { db } from "db";
 import DeleteDialog from "components/DeleteDialog";
 import { ICollection } from "types/Collection";
+import Loading from "components/Loading";
 
 const SearchInput = styled(Input)`
   margin-bottom: 32px;
@@ -26,7 +27,7 @@ const Search = () => {
   const [collectionToDelete, setCollectionToDelete] = useState<ICollection>();
 
   if (filteredCollections === undefined) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
