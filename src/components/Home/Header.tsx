@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { DarkModeIcon, MoreIcon, SearchIcon } from "assets/icons";
+import { DarkModeIcon, LogoutIcon, SearchIcon } from "assets/icons";
 import {
   Actions,
   IconButton,
@@ -32,7 +32,7 @@ const ActionLink = styled(IconLink)`
 `;
 
 const Header = ({ noSearch = false }: IHeaderProps) => {
-  const { user } = useAuth0();
+  const { user, logout } = useAuth0();
   console.log(user);
   return (
     <PageHeaderContainer>
@@ -46,8 +46,8 @@ const Header = ({ noSearch = false }: IHeaderProps) => {
         <Action>
           <DarkModeIcon />
         </Action>
-        <Action>
-          <MoreIcon />
+        <Action onClick={() => logout({ returnTo: window.location.origin })}>
+          <LogoutIcon />
         </Action>
       </Actions>
     </PageHeaderContainer>
