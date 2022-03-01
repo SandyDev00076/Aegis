@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Entry from "components/Entry";
-import Input from "components/Input";
+import Entry from "components/shared/Entry";
+import Input from "components/shared/Input";
 import {
   CustomDialog,
   DialogActions,

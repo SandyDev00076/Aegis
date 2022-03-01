@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import { AddIcon, DoneIcon } from "assets/icons";
-import DeleteDialog from "components/DeleteDialog";
-import Entry from "components/Entry";
-import Input from "components/Input";
-import Loading from "components/Loading";
+import DeleteDialog from "components/shared/DeleteDialog";
+import Entry from "components/shared/Entry";
+import Input from "components/shared/Input";
+import Loading from "components/shared/Loading";
 import { db } from "db";
 import { useLiveQuery } from "dexie-react-hooks";
 import { nanoid } from "nanoid";

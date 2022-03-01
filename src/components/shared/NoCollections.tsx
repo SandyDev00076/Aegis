@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { WarningIcon } from "../assets/icons";
-import { primaryLightest, textSecondary } from "../styles/colors";
+import { WarningIcon } from "assets/icons";
+import { primaryLightest, textSecondary } from "styles/colors";
 
 interface INoCollectionsProps {
   line2: JSX.Element;
