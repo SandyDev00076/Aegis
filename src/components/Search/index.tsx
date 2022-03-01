@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { useSearch } from "hooks/useSearch";
 import { CollectionCards, PageContainer } from "styles/shared";
-import CollectionCard from "components/CollectionCard";
+import CollectionCard from "components/shared/CollectionCard";
 import Header from "./Header";
-import NoCollections from "components/NoCollections";
-import Input from "components/Input";
+import NoCollections from "components/shared/NoCollections";
+import Input from "components/shared/Input";
 import { db } from "db";
-import DeleteDialog from "components/DeleteDialog";
+import DeleteDialog from "components/shared/DeleteDialog";
 import { ICollection } from "types/Collection";
-import Loading from "components/Loading";
+import Loading from "components/shared/Loading";
 
 const SearchInput = styled(Input)`
   margin-bottom: 32px;

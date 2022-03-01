@@ -1,19 +1,23 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { DarkModeIcon, MoreIcon, SearchIcon } from "assets/icons";
+import { DarkModeIcon, LogoutIcon, SearchIcon } from "assets/icons";
 import {
   Actions,
   IconButton,
   IconLink,
   PageHeaderContainer,
-  PageTitle,
 } from "styles/shared";
+import { useAuth0 } from "@auth0/auth0-react";
 
 interface IHeaderProps {
   noSearch?: boolean;
 }
 
-const AppName = styled(PageTitle)``;
+const ProfileAvatar = styled.img`
+  width: 64px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+`;
 
 const Action = styled(IconButton)`
   & > svg {
@@ -28,9 +32,11 @@ const ActionLink = styled(IconLink)`
 `;
 
 const Header = ({ noSearch = false }: IHeaderProps) => {
+  const { user, logout } = useAuth0();
+  console.log(user);
   return (
     <PageHeaderContainer>
-      <AppName>aegis</AppName>
+      {user && <ProfileAvatar src={user.picture} />}
       <Actions>
         {!noSearch && (
           <ActionLink to="/search">
@@ -40,8 +46,8 @@ const Header = ({ noSearch = false }: IHeaderProps) => {
         <Action>
           <DarkModeIcon />
         </Action>
-        <Action>
-          <MoreIcon />
+        <Action onClick={() => logout({ returnTo: window.location.origin })}>
+          <LogoutIcon />
         </Action>
       </Actions>
     </PageHeaderContainer>

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { fieldCardBorder } from "styles/colors";
 import { IField } from "types/Field";
-import Entry from "components/Entry";
+import Entry from "components/shared/Entry";
 import { Actions, IconButton } from "styles/shared";
 import { DeleteIcon, EditIcon, SafeIcon, UnSafeIcon } from "assets/icons";
 

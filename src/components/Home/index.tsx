@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import Header from "./Header";
-import CollectionCard from "components/CollectionCard";
+import CollectionCard from "components/shared/CollectionCard";
 import { ActionLink, CollectionCards, PageContainer } from "styles/shared";
 import { AddIcon } from "assets/icons";
-import NoCollections from "components/NoCollections";
+import NoCollections from "components/shared/NoCollections";
 import { primary, primaryLight, textInvert } from "styles/colors";
 import { db } from "db";
 import { useLiveQuery } from "dexie-react-hooks";
 import { ICollection } from "types/Collection";
-import DeleteDialog from "components/DeleteDialog";
-import Loading from "components/Loading";
+import DeleteDialog from "components/shared/DeleteDialog";
+import Loading from "components/shared/Loading";
 
 const SectionTitle = styled.h5`
   font-size: 0.8rem;

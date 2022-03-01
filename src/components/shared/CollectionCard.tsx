@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Gradient1 } from "../styles/cardBackgrounds";
-import { ICollection } from "../types/Collection";
-import { Actions, IconButton, IconLink } from "../styles/shared";
+import { Gradient1 } from "../../styles/cardBackgrounds";
+import { ICollection } from "../../types/Collection";
+import { Actions, IconButton, IconLink } from "../../styles/shared";
 import {
   DeleteIcon,
   EditIcon,
   StarIcon,
   StarOutlineIcon,
-} from "../assets/icons";
-import { favorite, favoriteHover } from "../styles/colors";
+} from "../../assets/icons";
+import { favorite, favoriteHover } from "../../styles/colors";
 
 interface ICollectionCardProps {
   collection: ICollection;
