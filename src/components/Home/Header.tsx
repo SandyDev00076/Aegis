@@ -6,14 +6,18 @@ import {
   IconButton,
   IconLink,
   PageHeaderContainer,
-  PageTitle,
 } from "styles/shared";
+import { useAuth0 } from "@auth0/auth0-react";
 
 interface IHeaderProps {
   noSearch?: boolean;
 }
 
-const AppName = styled(PageTitle)``;
+const ProfileAvatar = styled.img`
+  width: 64px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+`;
 
 const Action = styled(IconButton)`
   & > svg {
@@ -28,9 +32,11 @@ const ActionLink = styled(IconLink)`
 `;
 
 const Header = ({ noSearch = false }: IHeaderProps) => {
+  const { user } = useAuth0();
+  console.log(user);
   return (
     <PageHeaderContainer>
-      <AppName>aegis</AppName>
+      {user && <ProfileAvatar src={user.picture} />}
       <Actions>
         {!noSearch && (
           <ActionLink to="/search">
